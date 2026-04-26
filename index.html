@@ -1177,95 +1177,115 @@ function renderVehicleDetail(vehicleId) {
     <button class="back-btn" onclick="goBack()">← Назад</button>
     <div class="card" style="margin-bottom:20px">
       <div class="card-body">
-        <div class="card-header">
-          <div class="card-icon ${sc}">🚗</div>
+        <div class="card-header" style="margin-bottom:0">
+          <div class="card-icon ${sc}" style="width:52px;height:52px;font-size:24px">🚗</div>
           <div>
-            <div class="card-title">${v.name}</div>
-            <div class="card-sub">${v.plate} ${v.brand ? '• ' + v.brand : ''}</div>
+            <div class="card-title" style="font-size:18px">${v.name}</div>
+            <div style="color:var(--accent);font-weight:600;font-size:14px">${v.plate}</div>
+            ${v.brand ? `<div class="card-sub">${v.brand}${v.model ? ' ' + v.model : ''}${v.year ? ' • ' + v.year : ''}</div>` : ''}
           </div>
-          ${statusBadge(status, 0)}
+          ${statusBadge(status)}
         </div>
-        ${docsHtml}
       </div>
-      <div class="card-actions" onclick="event.stopPropagation()">
-        <button class="action-btn" onclick="editVehicle('${v.id}')" title="Редактирай">✏️</button>
-        <button class="action-btn danger" onclick="askDelete('Изтриване на &quot;${v.name}&quot;?', () => deleteVehicle('${v.id}'))" title="Изтрий">🗑️</button>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ═══════════════════════════════════════════════
-// VEHICLE DETAILS & DOCUMENTS
-// ═══════════════════════════════════════════════
-
-function renderVehicleDetail(id) {
-  const vehicles = getData('mg_vehicles');
-  const v = vehicles.find(x => x.id === id);
-  if (!v) return goBack();
-
-  const docs = v.documents || [];
-  const docsHtml = docs.map(d => {
-    const days = daysRemaining(d.validTo);
-    const status = getStatus(days);
-    const sc = statusClass(status);
-    return `
-    <div class="card ${status === 'expired' ? 'expired' : status === 'expiring' ? 'expiring' : ''}">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-icon ${sc}">📄</div>
-          <div>
-            <div class="card-title">${d.type}</div>
-            <div class="card-sub">${d.notes || 'Валиден до ' + formatDate(d.validTo)}</div>
-          </div>
-          ${statusBadge(status, days)}
-        </div>
-        <div class="card-info">
-          <div class="info-col"><label>ОТ</label><span>${formatDate(d.validFrom)}</span></div>
-          <div class="info-col"><label>ДО</label><span class="${sc}">${formatDate(d.validTo)}</span></div>
-          <div class="info-col"><label>ОСТАВАТ</label><span class="${sc}">${days < 0 ? 'Изтекъл' : days + ' дни'}</span></div>
-        </div>
-        ${d.imageData ? `<div style="margin-top:10px"><img src="${d.imageData}" style="width:100%; border-radius:8px;"></div>` : ''}
-      </div>
-      <div class="card-actions">
-        <button class="action-btn" onclick="editDocument('${v.id}', '${d.id}')">✏️</button>
-        <button class="action-btn danger" onclick="askDelete('Изтриване на документ?', () => deleteDocument('${v.id}', '${d.id}'))">🗑️</button>
-      </div>
-    </div>`;
-  }).join('');
-
-  document.getElementById('vehicle-detail-content').innerHTML = `
-    <button class="back-btn" onclick="goBack()">← Назад към списъка</button>
-    <div class="section-header">
-      <h2 class="section-title">${v.name}</h2>
-      <button class="add-doc-btn" onclick="openAddDocModal('${v.id}')">+ Нов документ</button>
     </div>
-    ${docsHtml || '<p style="color:var(--muted); text-align:center; padding:40px;">Няма добавени документи.</p>'}
+    <div class="section-header">
+      <div class="section-title">Документи</div>
+      <button class="add-doc-btn" onclick="openAddDocModal('${vehicleId}')">+ Добави</button>
+    </div>
+    ${docsHtml}
   `;
 }
 
 // ═══════════════════════════════════════════════
-// SAVE & DELETE LOGIC
+// MODALS
 // ═══════════════════════════════════════════════
 
 function openAddModal() {
-  if (currentTab === 'warranties') {
-    document.getElementById('warranty-modal-title').textContent = 'Нова гаранция';
-    document.getElementById('warranty-edit-id').value = '';
-    document.getElementById('w-title').value = '';
-    document.getElementById('warranty-modal').classList.add('open');
-  } else if (currentTab === 'vehicles') {
-    document.getElementById('vehicle-modal-title').textContent = 'Нов автомобил';
-    document.getElementById('vehicle-edit-id').value = '';
-    document.getElementById('v-name').value = '';
-    document.getElementById('vehicle-modal').classList.add('open');
+  if (currentTab === 'warranties' || currentTab === 'settings') {
+    openAddWarrantyModal();
+  } else {
+    openAddVehicleModal();
   }
 }
 
-function openAddDocModal(vId) {
+function openAddWarrantyModal() {
+  document.getElementById('warranty-modal-title').textContent = 'Нова гаранция';
+  document.getElementById('warranty-edit-id').value = '';
+  document.getElementById('w-title').value = '';
+  document.getElementById('w-category').value = '';
+  document.getElementById('w-model').value = '';
+  document.getElementById('w-purchase').value = new Date().toISOString().split('T')[0];
+  document.getElementById('w-expiry').value = '';
+  document.getElementById('w-image-data').value = '';
+  document.getElementById('w-image-preview-wrap').innerHTML = '<span style="font-size:32px">📷</span><div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div>';
+  document.getElementById('warranty-modal').classList.add('open');
+}
+
+function editWarranty(id) {
+  const warranties = getData('mg_warranties');
+  const w = warranties.find(x => x.id === id);
+  if (!w) return;
+  document.getElementById('warranty-modal-title').textContent = 'Редактиране';
+  document.getElementById('warranty-edit-id').value = id;
+  document.getElementById('w-title').value = w.title;
+  document.getElementById('w-category').value = w.category;
+  document.getElementById('w-model').value = w.model || '';
+  document.getElementById('w-purchase').value = w.purchase;
+  document.getElementById('w-expiry').value = w.expiry;
+  document.getElementById('warranty-modal').classList.add('open');
+}
+
+function openAddVehicleModal() {
+  document.getElementById('vehicle-modal-title').textContent = 'Нов автомобил';
+  document.getElementById('vehicle-edit-id').value = '';
+  document.getElementById('v-name').value = '';
+  document.getElementById('v-plate').value = '';
+  document.getElementById('v-brand').value = '';
+  document.getElementById('v-model').value = '';
+  document.getElementById('v-year').value = '';
+  document.getElementById('vehicle-modal').classList.add('open');
+}
+
+function editVehicle(id) {
+  const vehicles = getData('mg_vehicles');
+  const v = vehicles.find(x => x.id === id);
+  if (!v) return;
+  document.getElementById('vehicle-modal-title').textContent = 'Редактиране на кола';
+  document.getElementById('vehicle-edit-id').value = id;
+  document.getElementById('v-name').value = v.name;
+  document.getElementById('v-plate').value = v.plate;
+  document.getElementById('v-brand').value = v.brand || '';
+  document.getElementById('v-model').value = v.model || '';
+  document.getElementById('v-year').value = v.year || '';
+  document.getElementById('vehicle-modal').classList.add('open');
+}
+
+function openAddDocModal(vehicleId) {
   document.getElementById('doc-modal-title').textContent = 'Нов документ';
   document.getElementById('doc-edit-id').value = '';
-  document.getElementById('doc-vehicle-id').value = vId;
+  document.getElementById('doc-vehicle-id').value = vehicleId;
+  document.getElementById('d-type').value = '';
+  document.getElementById('d-type-custom').value = '';
+  document.getElementById('d-from').value = '';
+  document.getElementById('d-to').value = '';
+  document.getElementById('d-notes').value = '';
+  document.getElementById('doc-modal').classList.add('open');
+}
+
+function editDocument(vehicleId, docId) {
+  const vehicles = getData('mg_vehicles');
+  const v = vehicles.find(x => x.id === vehicleId);
+  if (!v) return;
+  const d = (v.documents || []).find(x => x.id === docId);
+  if (!d) return;
+  document.getElementById('doc-modal-title').textContent = 'Редактиране на документ';
+  document.getElementById('doc-edit-id').value = docId;
+  document.getElementById('doc-vehicle-id').value = vehicleId;
+  document.getElementById('d-type').value = d.type;
+  document.getElementById('d-type-custom').value = '';
+  document.getElementById('d-from').value = d.validFrom || '';
+  document.getElementById('d-to').value = d.validTo || '';
+  document.getElementById('d-notes').value = d.notes || '';
   document.getElementById('doc-modal').classList.add('open');
 }
 
@@ -1273,85 +1293,133 @@ function closeModal(id) {
   document.getElementById(id).classList.remove('open');
 }
 
+// ═══════════════════════════════════════════════
+// SAVE / DELETE
+// ═══════════════════════════════════════════════
+
 function saveWarranty() {
-  const id = document.getElementById('warranty-edit-id').value;
-  const title = document.getElementById('w-title').value;
+  const title = document.getElementById('w-title').value.trim();
   const category = document.getElementById('w-category').value;
+  const model = document.getElementById('w-model').value.trim();
   const purchase = document.getElementById('w-purchase').value;
   const expiry = document.getElementById('w-expiry').value;
+  const image = document.getElementById('w-image-data').value;
 
-  if (!title || !expiry) { showSnackbar('Попълнете име и дата!'); return; }
+  if (!title || !category || !purchase || !expiry) {
+    showSnackbar('Моля попълни всички задължителни полета!');
+    return;
+  }
 
-  let data = getData('mg_warranties');
-  const obj = { id: id || genId(), title, category, purchase, expiry, model: document.getElementById('w-model').value };
+  const warranties = getData('mg_warranties');
+  const editId = document.getElementById('warranty-edit-id').value;
 
-  if (id) { const i = data.findIndex(x => x.id === id); data[i] = obj; }
-  else { data.push(obj); }
+  if (editId) {
+    const idx = warranties.findIndex(w => w.id === editId);
+    if (idx !== -1) warranties[idx] = {...warranties[idx], title, category, model, purchase, expiry, ...(image && {image})};
+  } else {
+    warranties.push({id: genId(), title, category, model, purchase, expiry, image});
+  }
 
-  setData('mg_warranties', data);
+  setData('mg_warranties', warranties);
   closeModal('warranty-modal');
   renderWarranties();
-  showSnackbar('Запазено! ✅');
+  scheduleNotifications();
+  showSnackbar('✓ Запазено успешно!');
 }
 
 function saveVehicle() {
-  const id = document.getElementById('vehicle-edit-id').value;
-  const name = document.getElementById('v-name').value;
-  const plate = document.getElementById('v-plate').value;
+  const name = document.getElementById('v-name').value.trim();
+  const plate = document.getElementById('v-plate').value.trim();
+  const brand = document.getElementById('v-brand').value.trim();
+  const model = document.getElementById('v-model').value.trim();
+  const year = document.getElementById('v-year').value.trim();
 
-  if (!name || !plate) { showSnackbar('Попълнете име и номер!'); return; }
-
-  let data = getData('mg_vehicles');
-  if (id) {
-    const i = data.findIndex(x => x.id === id);
-    data[i] = { ...data[i], name, plate, brand: document.getElementById('v-brand').value };
-  } else {
-    data.push({ id: genId(), name, plate, brand: document.getElementById('v-brand').value, documents: [] });
+  if (!name || !plate) {
+    showSnackbar('Моля попълни задължителните полета!');
+    return;
   }
 
-  setData('mg_vehicles', data);
+  const vehicles = getData('mg_vehicles');
+  const editId = document.getElementById('vehicle-edit-id').value;
+
+  if (editId) {
+    const idx = vehicles.findIndex(v => v.id === editId);
+    if (idx !== -1) vehicles[idx] = {...vehicles[idx], name, plate, brand, model, year};
+  } else {
+    vehicles.push({id: genId(), name, plate, brand, model, year, documents: []});
+  }
+
+  setData('mg_vehicles', vehicles);
   closeModal('vehicle-modal');
   renderVehicles();
-  showSnackbar('Автомобилът е запазен! 🚗');
+  scheduleNotifications();
+  showSnackbar('✓ Запазено успешно!');
 }
 
 function saveDocument() {
-  const vId = document.getElementById('doc-vehicle-id').value;
-  const type = document.getElementById('d-type').value || document.getElementById('d-type-custom').value;
-  const to = document.getElementById('d-to').value;
+  const typeSelect = document.getElementById('d-type').value;
+  const typeCustom = document.getElementById('d-type-custom').value.trim();
+  const type = typeCustom || typeSelect;
+  const vehicleId = document.getElementById('doc-vehicle-id').value;
+  const validFrom = document.getElementById('d-from').value;
+  const validTo = document.getElementById('d-to').value;
+  const notes = document.getElementById('d-notes').value.trim();
+  const docImage = document.getElementById('d-image-data').value;
 
-  if (!type || !to) { showSnackbar('Попълнете вид и дата!'); return; }
+  if (!type) {
+    showSnackbar('Моля избери вид документ!');
+    return;
+  }
 
-  let vehicles = getData('mg_vehicles');
-  const vIdx = vehicles.findIndex(v => v.id === vId);
-  const newDoc = { id: genId(), type, validFrom: document.getElementById('d-from').value, validTo: to, notes: document.getElementById('d-notes').value };
+  const vehicles = getData('mg_vehicles');
+  const vIdx = vehicles.findIndex(v => v.id === vehicleId);
+  if (vIdx === -1) return;
 
-  vehicles[vIdx].documents.push(newDoc);
+  if (!vehicles[vIdx].documents) vehicles[vIdx].documents = [];
+
+  const editId = document.getElementById('doc-edit-id').value;
+
+  if (editId) {
+    const dIdx = vehicles[vIdx].documents.findIndex(d => d.id === editId);
+    if (dIdx !== -1) vehicles[vIdx].documents[dIdx] = {...vehicles[vIdx].documents[dIdx], type, validFrom, validTo, notes, ...(docImage && {image: docImage})};
+  } else {
+    vehicles[vIdx].documents.push({id: genId(), type, validFrom, validTo, notes, image: docImage});
+  }
+
   setData('mg_vehicles', vehicles);
   closeModal('doc-modal');
-  renderVehicleDetail(vId);
-  showSnackbar('Документът е добавен! 📄');
+  renderVehicleDetail(vehicleId);
+  scheduleNotifications();
+  showSnackbar('✓ Документът е запазен!');
 }
 
 function deleteWarranty(id) {
-  let data = getData('mg_warranties');
-  setData('mg_warranties', data.filter(x => x.id !== id));
+  let warranties = getData('mg_warranties');
+  warranties = warranties.filter(w => w.id !== id);
+  setData('mg_warranties', warranties);
   renderWarranties();
-  closeModal('confirm-modal');
+  scheduleNotifications();
+  showSnackbar('🗑️ Изтрито');
 }
 
 function deleteVehicle(id) {
-  let data = getData('mg_vehicles');
-  setData('mg_vehicles', data.filter(x => x.id !== id));
+  let vehicles = getData('mg_vehicles');
+  vehicles = vehicles.filter(v => v.id !== id);
+  setData('mg_vehicles', vehicles);
   renderVehicles();
-  closeModal('confirm-modal');
+  scheduleNotifications();
+  showSnackbar('🗑️ Изтрито');
 }
 
-function showSnackbar(msg) {
-  const s = document.getElementById('snackbar');
-  s.textContent = msg;
-  s.classList.add('show');
-  setTimeout(() => s.classList.remove('show'), 3000);
+function deleteDocument(vehicleId, docId) {
+  const vehicles = getData('mg_vehicles');
+  const vIdx = vehicles.findIndex(v => v.id === vehicleId);
+  if (vIdx === -1) return;
+  vehicles[vIdx].documents = (vehicles[vIdx].documents || []).filter(d => d.id !== docId);
+  setData('mg_vehicles', vehicles);
+  renderVehicleDetail(vehicleId);
+  scheduleNotifications();
+  showSnackbar('🗑️ Изтрито');
 }
 
 function askDelete(text, cb) {
@@ -1361,22 +1429,98 @@ function askDelete(text, cb) {
 }
 
 function confirmDelete() {
-  if (deleteCallback) deleteCallback();
+  closeModal('confirm-modal');
+  if (deleteCallback) { deleteCallback(); deleteCallback = null; }
 }
 
-function updateSlider(v) {
-  document.getElementById('days-label').textContent = v + ' дни';
+// ═══════════════════════════════════════════════
+// SETTINGS
+// ═══════════════════════════════════════════════
+
+function updateSlider(val) {
+  document.getElementById('days-label').textContent = val + ' дни';
 }
 
 function saveSettings() {
-  const days = document.getElementById('alert-slider').value;
-  saveSettingsData({alertDays: parseInt(days)});
-  showSnackbar('Настройките са запазени! 🔔');
+  const days = parseInt(document.getElementById('alert-slider').value);
+  saveSettingsData({alertDays: days});
+  scheduleNotifications();
+  showSnackbar('✓ Настройките са запазени!');
 }
 
-function requestNotificationPermission() {}
-function scheduleNotifications() {}
+// ═══════════════════════════════════════════════
+// NOTIFICATIONS
+// ═══════════════════════════════════════════════
 
+async function requestNotificationPermission() {
+  if ('Notification' in window && Notification.permission === 'default') {
+    await Notification.requestPermission();
+  }
+}
+
+function scheduleNotifications() {
+  if (!('Notification' in window) || Notification.permission !== 'granted') return;
+
+  const alertDays = getSettings().alertDays;
+  const warranties = getData('mg_warranties');
+  const vehicles = getData('mg_vehicles');
+
+  const items = [];
+
+  warranties.forEach(w => {
+    const days = daysRemaining(w.expiry);
+    if (days >= 0 && days <= alertDays) {
+      items.push({title: '⚠️ Гаранция изтича', body: `${w.title} изтича след ${days} дни`, days});
+    }
+  });
+
+  vehicles.forEach(v => {
+    (v.documents || []).forEach(d => {
+      if (!d.validTo) return;
+      const days = daysRemaining(d.validTo);
+      if (days >= 0 && days <= alertDays) {
+        items.push({title: `⚠️ ${v.name} — ${d.type}`, body: `Изтича след ${days} дни`, days});
+      }
+    });
+  });
+
+  // Show notifications for items expiring soon
+  if (items.length > 0 && document.visibilityState === 'hidden') {
+    items.forEach(item => {
+      new Notification(item.title, {
+        body: item.body,
+        icon: '/icon-192.png',
+        badge: '/icon-192.png'
+      });
+    });
+  }
+
+  // Store for service worker
+  localStorage.setItem('mg_pending_notifications', JSON.stringify(items));
+}
+
+// ═══════════════════════════════════════════════
+// UI HELPERS
+// ═══════════════════════════════════════════════
+
+function showSnackbar(msg) {
+  const sb = document.getElementById('snackbar');
+  sb.textContent = msg;
+  sb.classList.add('show');
+  setTimeout(() => sb.classList.remove('show'), 3000);
+}
+
+// Close modals on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) overlay.classList.remove('open');
+  });
+});
+
+// Register service worker for background notifications
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
 </script>
 </body>
 </html>
