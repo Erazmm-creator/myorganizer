@@ -549,6 +549,23 @@
     gap: 6px;
   }
 
+  .image-upload-area {
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--card2);
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .image-upload-area:active { border-color: var(--accent); }
+  .image-upload-area img { max-width: 100%; max-height: 200px; border-radius: 8px; object-fit: contain; }
+  .img-clear-btn { display: block; margin-top: 8px; background: none; border: 1px solid var(--red); color: var(--red); border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; font-family: "DM Sans", sans-serif; }
+
   .notification-info {
     background: rgba(0,212,160,0.08);
     border: 1px solid rgba(0,212,160,0.2);
@@ -665,6 +682,14 @@
       <label>Дата на изтичане *</label>
       <input type="date" id="w-expiry">
     </div>
+    <div class="form-group">
+      <label>Снимка на касова бележка (по желание)</label>
+      <div class="image-upload-area" id="w-image-area" onclick="document.getElementById('w-image-input').click()">
+        <div id="w-image-preview-wrap"><span style="font-size:32px">📷</span><div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div></div>
+      </div>
+      <input type="file" id="w-image-input" accept="image/*" capture="environment" style="display:none" onchange="previewImage('w-image-input','w-image-preview-wrap','w-image-data')">
+      <input type="hidden" id="w-image-data">
+    </div>
     <button class="btn-primary" onclick="saveWarranty()">Запази</button>
     <button class="btn-cancel" onclick="closeModal('warranty-modal')">Отказ</button>
   </div>
@@ -735,6 +760,14 @@
     <div class="form-group">
       <label>Бележки (по желание)</label>
       <input type="text" id="d-notes" placeholder="напр. полица номер...">
+    </div>
+    <div class="form-group">
+      <label>Снимка на документ (по желание)</label>
+      <div class="image-upload-area" id="d-image-area" onclick="document.getElementById('d-image-input').click()">
+        <div id="d-image-preview-wrap"><span style="font-size:32px">📷</span><div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div></div>
+      </div>
+      <input type="file" id="d-image-input" accept="image/*" capture="environment" style="display:none" onchange="previewImage('d-image-input','d-image-preview-wrap','d-image-data')">
+      <input type="hidden" id="d-image-data">
     </div>
     <button class="btn-primary" onclick="saveDocument()">Запази</button>
     <button class="btn-cancel" onclick="closeModal('doc-modal')">Отказ</button>
@@ -899,6 +932,27 @@ function calcProgress(purchaseDate, expiryDate) {
   const total = new Date(expiryDate) - new Date(purchaseDate);
   const elapsed = Date.now() - new Date(purchaseDate);
   return Math.min(100, Math.max(0, Math.round(elapsed / total * 100)));
+}
+
+function previewImage(inputId, previewId, dataId) {
+  const file = document.getElementById(inputId).files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const data = e.target.result;
+    document.getElementById(dataId).value = data;
+    document.getElementById(previewId).innerHTML =
+      '<img src="' + data + '">' +
+      '<button class="img-clear-btn" onclick="clearImage(event,'' + inputId + '','' + previewId + '','' + dataId + '')">✕ Премахни снимката</button>';
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearImage(e, inputId, previewId, dataId) {
+  e.stopPropagation();
+  document.getElementById(inputId).value = '';
+  document.getElementById(dataId).value = '';
+  document.getElementById(previewId).innerHTML = '<span style="font-size:32px">📷</span><div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div>';
 }
 
 function genId() {
@@ -1162,6 +1216,8 @@ function openAddWarrantyModal() {
   document.getElementById('w-model').value = '';
   document.getElementById('w-purchase').value = new Date().toISOString().split('T')[0];
   document.getElementById('w-expiry').value = '';
+  document.getElementById('w-image-data').value = '';
+  document.getElementById('w-image-preview-wrap').innerHTML = '<span style="font-size:32px">📷</span><div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div>';
   document.getElementById('warranty-modal').classList.add('open');
 }
 
@@ -1247,6 +1303,7 @@ function saveWarranty() {
   const model = document.getElementById('w-model').value.trim();
   const purchase = document.getElementById('w-purchase').value;
   const expiry = document.getElementById('w-expiry').value;
+  const image = document.getElementById('w-image-data').value;
 
   if (!title || !category || !purchase || !expiry) {
     showSnackbar('Моля попълни всички задължителни полета!');
@@ -1258,9 +1315,9 @@ function saveWarranty() {
 
   if (editId) {
     const idx = warranties.findIndex(w => w.id === editId);
-    if (idx !== -1) warranties[idx] = {...warranties[idx], title, category, model, purchase, expiry};
+    if (idx !== -1) warranties[idx] = {...warranties[idx], title, category, model, purchase, expiry, ...(image && {image})};
   } else {
-    warranties.push({id: genId(), title, category, model, purchase, expiry});
+    warranties.push({id: genId(), title, category, model, purchase, expiry, image});
   }
 
   setData('mg_warranties', warranties);
@@ -1307,6 +1364,7 @@ function saveDocument() {
   const validFrom = document.getElementById('d-from').value;
   const validTo = document.getElementById('d-to').value;
   const notes = document.getElementById('d-notes').value.trim();
+  const docImage = document.getElementById('d-image-data').value;
 
   if (!type) {
     showSnackbar('Моля избери вид документ!');
@@ -1323,9 +1381,9 @@ function saveDocument() {
 
   if (editId) {
     const dIdx = vehicles[vIdx].documents.findIndex(d => d.id === editId);
-    if (dIdx !== -1) vehicles[vIdx].documents[dIdx] = {...vehicles[vIdx].documents[dIdx], type, validFrom, validTo, notes};
+    if (dIdx !== -1) vehicles[vIdx].documents[dIdx] = {...vehicles[vIdx].documents[dIdx], type, validFrom, validTo, notes, ...(docImage && {image: docImage})};
   } else {
-    vehicles[vIdx].documents.push({id: genId(), type, validFrom, validTo, notes});
+    vehicles[vIdx].documents.push({id: genId(), type, validFrom, validTo, notes, image: docImage});
   }
 
   setData('mg_vehicles', vehicles);
