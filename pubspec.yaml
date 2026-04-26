@@ -1,0 +1,39 @@
+name: mygarage
+description: Гаранции и Автомобили - лично приложение
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Локална база данни
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  
+  # Известия
+  flutter_local_notifications: ^17.0.0
+  timezone: ^0.9.2
+  
+  # Снимки
+  image_picker: ^1.0.7
+  
+  # Икони
+  flutter_svg: ^2.0.9
+  
+  # Дати
+  intl: ^0.19.0
+  
+  # Разрешения
+  permission_handler: ^11.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
