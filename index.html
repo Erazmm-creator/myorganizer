@@ -38,145 +38,74 @@
     overflow-x: hidden;
   }
 
-  /* TOP NAV */
   .top-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
     background: var(--bg);
     padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     border-bottom: 1px solid var(--border);
   }
 
   .tab-switcher {
-    display: flex;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 30px;
-    padding: 4px;
-    gap: 2px;
+    display: flex; background: var(--card);
+    border: 1px solid var(--border); border-radius: 30px;
+    padding: 4px; gap: 2px;
   }
 
   .tab-btn {
-    padding: 7px 16px;
-    border-radius: 30px;
-    border: none;
-    background: transparent;
-    color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
+    padding: 7px 16px; border-radius: 30px; border: none;
+    background: transparent; color: var(--muted);
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; gap: 6px; white-space: nowrap;
   }
 
-  .tab-btn.active {
-    background: var(--accent);
-    color: #000;
-    font-weight: 700;
-  }
+  .tab-btn.active { background: var(--accent); color: #000; font-weight: 700; }
 
   .settings-btn {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--muted);
-    font-size: 18px;
-    transition: all 0.2s;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--muted); font-size: 18px; transition: all 0.2s;
   }
 
-  .settings-btn:active { transform: scale(0.95); }
-
-  /* SCREENS */
   .screen { display: none; padding: 16px; }
   .screen.active { display: block; }
 
-  /* FILTERS */
   .filters {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: none;
+    display: flex; gap: 8px; margin-bottom: 16px;
+    overflow-x: auto; padding-bottom: 4px; scrollbar-width: none;
   }
   .filters::-webkit-scrollbar { display: none; }
 
   .filter-chip {
-    padding: 7px 16px;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    background: var(--card2);
-    color: var(--muted);
-    font-size: 13px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s;
-    font-family: 'DM Sans', sans-serif;
+    padding: 7px 16px; border-radius: 20px;
+    border: 1px solid var(--border); background: var(--card2);
+    color: var(--muted); font-size: 13px; cursor: pointer;
+    white-space: nowrap; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
   }
 
-  .filter-chip.active {
-    background: rgba(0,212,160,0.15);
-    border-color: var(--accent);
-    color: var(--accent);
-    font-weight: 600;
-  }
+  .filter-chip.active { background: rgba(0,212,160,0.15); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .filter-chip.orange.active { background: rgba(255,140,66,0.15); border-color: var(--orange); color: var(--orange); }
 
-  .filter-chip.orange.active {
-    background: rgba(255,140,66,0.15);
-    border-color: var(--orange);
-    color: var(--orange);
-  }
-
-  /* CARDS */
   .card {
-    background: var(--card);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    margin-bottom: 12px;
-    overflow: hidden;
+    background: var(--card); border: 1.5px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
     animation: fadeIn 0.3s ease;
   }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
   .card.expiring { border-color: rgba(255,140,66,0.5); }
   .card.expired { border-color: rgba(255,71,87,0.5); }
-
   .card-body { padding: 16px; }
 
-  .card-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
+  .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 
   .card-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
   }
 
   .card-icon.green { background: rgba(0,212,160,0.15); }
@@ -186,416 +115,162 @@
   .card-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 600; }
   .card-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-  .status-badge {
-    margin-left: auto;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-
+  .status-badge { margin-left: auto; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; flex-shrink: 0; }
   .badge-green { background: rgba(0,212,160,0.15); color: var(--accent); border: 1px solid rgba(0,212,160,0.3); }
   .badge-orange { background: rgba(255,140,66,0.15); color: var(--orange); border: 1px solid rgba(255,140,66,0.3); }
   .badge-red { background: rgba(255,71,87,0.15); color: var(--red); border: 1px solid rgba(255,71,87,0.3); }
 
-  .card-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
+  .card-info { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
 
-  .info-col label {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .info-col span {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-  }
-
+  .info-col label { font-size: 10px; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .info-col span { font-size: 13px; font-weight: 600; color: var(--text); }
   .info-col span.orange { color: var(--orange); }
   .info-col span.red { color: var(--red); }
   .info-col span.green { color: var(--accent); }
 
-  .progress-bar {
-    height: 5px;
-    background: var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 4px;
-  }
-
-  .progress-fill {
-    height: 100%;
-    border-radius: 4px;
-    transition: width 0.5s ease;
-  }
-
+  .progress-bar { height: 5px; background: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 4px; }
+  .progress-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
   .progress-label { font-size: 11px; color: var(--muted); }
 
-  .alert-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 8px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--orange);
-  }
+  .alert-row { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; font-weight: 500; color: var(--orange); }
 
-  .card-actions {
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: flex-end;
-    padding: 4px 8px;
-  }
+  .card-actions { border-top: 1px solid var(--border); display: flex; justify-content: flex-end; padding: 4px 8px; }
 
   .action-btn {
-    background: none;
-    border: none;
-    color: var(--muted);
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 17px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
+    background: none; border: none; color: var(--muted);
+    width: 40px; height: 40px; border-radius: 8px;
+    cursor: pointer; font-size: 17px;
+    display: flex; align-items: center; justify-content: center; transition: all 0.2s;
   }
-
   .action-btn:active { transform: scale(0.9); background: var(--card2); }
   .action-btn.danger { color: var(--red); }
 
-  /* VEHICLE DOCS */
-  .doc-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-  }
+  .doc-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
   .doc-row:last-child { border-bottom: none; }
-
-  .doc-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
+  .doc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .doc-name { flex: 1; font-size: 13px; }
   .doc-days { font-size: 13px; font-weight: 600; }
 
-  /* FAB */
   .fab {
-    position: fixed;
-    bottom: 24px;
-    right: 20px;
-    background: var(--accent);
-    color: #000;
-    border: none;
-    border-radius: 20px;
-    padding: 14px 20px;
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 20px rgba(0,212,160,0.4);
-    transition: all 0.2s;
-    z-index: 50;
+    position: fixed; bottom: 24px; right: 20px;
+    background: var(--accent); color: #000; border: none;
+    border-radius: 20px; padding: 14px 20px;
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 20px rgba(0,212,160,0.4); transition: all 0.2s; z-index: 50;
   }
   .fab:active { transform: scale(0.95); }
 
-  /* MODAL */
   .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 200;
-    align-items: flex-end;
-    justify-content: center;
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7); z-index: 200;
+    align-items: flex-end; justify-content: center;
   }
   .modal-overlay.open { display: flex; }
 
   .modal {
-    background: var(--card);
-    border-radius: 24px 24px 0 0;
-    width: 100%;
-    max-width: 480px;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 24px 20px;
+    background: var(--card); border-radius: 24px 24px 0 0;
+    width: 100%; max-width: 480px; max-height: 90vh;
+    overflow-y: auto; padding: 24px 20px;
     border-top: 1px solid var(--border);
     animation: slideUp 0.3s ease;
   }
 
-  @keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
-  }
+  @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-  .modal-handle {
-    width: 40px;
-    height: 4px;
-    background: var(--border);
-    border-radius: 4px;
-    margin: 0 auto 20px;
-  }
-
-  .modal-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
+  .modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 4px; margin: 0 auto 20px; }
+  .modal-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 20px; }
 
   .form-group { margin-bottom: 16px; }
 
   .form-group label {
-    display: block;
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
-    text-transform: uppercase;
+    display: block; font-size: 12px; color: var(--muted);
+    font-weight: 500; letter-spacing: 0.5px; margin-bottom: 8px; text-transform: uppercase;
   }
 
   .form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    color: var(--text);
-    padding: 13px 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s;
-    appearance: none;
-    -webkit-appearance: none;
+    width: 100%; background: var(--card2); border: 1px solid var(--border);
+    border-radius: 12px; color: var(--text); padding: 13px 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px; outline: none;
+    transition: border-color 0.2s; appearance: none; -webkit-appearance: none;
   }
 
-  .form-group input:focus, .form-group select:focus {
-    border-color: var(--accent);
-  }
-
+  .form-group input:focus, .form-group select:focus { border-color: var(--accent); }
   .form-group select option { background: var(--card); }
 
+  .image-upload-area {
+    border: 2px dashed var(--border); border-radius: 12px;
+    padding: 20px; text-align: center; cursor: pointer;
+    transition: all 0.2s; background: var(--card2);
+    min-height: 100px; display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+  }
+  .image-upload-area:active { border-color: var(--accent); }
+  .image-upload-area img { max-width: 100%; max-height: 200px; border-radius: 8px; object-fit: contain; }
+
+  .img-clear-btn {
+    margin-top: 10px; background: none; border: 1px solid var(--red);
+    color: var(--red); border-radius: 8px; padding: 6px 14px;
+    font-size: 13px; cursor: pointer; font-family: 'DM Sans', sans-serif;
+  }
+
   .btn-primary {
-    width: 100%;
-    background: var(--accent);
-    color: #000;
-    border: none;
-    border-radius: 12px;
-    padding: 15px;
-    font-family: 'Syne', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: all 0.2s;
+    width: 100%; background: var(--accent); color: #000; border: none;
+    border-radius: 12px; padding: 15px;
+    font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700;
+    cursor: pointer; margin-top: 8px; transition: all 0.2s;
   }
   .btn-primary:active { transform: scale(0.98); }
 
   .btn-cancel {
-    width: 100%;
-    background: transparent;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    margin-top: 8px;
+    width: 100%; background: transparent; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 12px; padding: 14px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px; cursor: pointer; margin-top: 8px;
   }
 
-  /* EMPTY STATE */
-  .empty {
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--muted);
-  }
+  .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
   .empty .empty-icon { font-size: 56px; margin-bottom: 16px; }
   .empty h3 { font-family: 'Syne', sans-serif; color: var(--text); margin-bottom: 8px; }
 
-  /* SETTINGS SCREEN */
-  .settings-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin-bottom: 16px;
-  }
+  .settings-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+  .settings-card h3 { font-family: 'Syne', sans-serif; font-size: 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
 
-  .settings-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 16px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .slider-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .days-badge { background: rgba(0,212,160,0.15); color: var(--accent); border: 1px solid rgba(0,212,160,0.3); padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 16px; }
 
-  .slider-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
+  input[type=range] { width: 100%; accent-color: var(--accent); height: 6px; border-radius: 4px; }
+  .slider-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 4px; }
 
-  .days-badge {
-    background: rgba(0,212,160,0.15);
-    color: var(--accent);
-    border: 1px solid rgba(0,212,160,0.3);
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-weight: 700;
-    font-size: 16px;
-  }
-
-  input[type=range] {
-    width: 100%;
-    accent-color: var(--accent);
-    height: 6px;
-    border-radius: 4px;
-  }
-
-  .slider-labels {
-    display: flex;
-    justify-content: space-between;
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  /* SNACKBAR */
   .snackbar {
-    position: fixed;
-    bottom: 90px;
-    left: 50%;
+    position: fixed; bottom: 90px; left: 50%;
     transform: translateX(-50%) translateY(20px);
-    background: var(--accent);
-    color: #000;
-    padding: 12px 20px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 14px;
-    opacity: 0;
-    transition: all 0.3s;
-    z-index: 300;
-    white-space: nowrap;
+    background: var(--accent); color: #000; padding: 12px 20px;
+    border-radius: 12px; font-weight: 600; font-size: 14px;
+    opacity: 0; transition: all 0.3s; z-index: 300; white-space: nowrap;
   }
-  .snackbar.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+  .snackbar.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* VEHICLE DETAIL */
-  .back-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: none;
-    border: none;
-    color: var(--accent);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    cursor: pointer;
-    padding: 0;
-    margin-bottom: 16px;
-  }
+  .back-btn { display: flex; align-items: center; gap: 8px; background: none; border: none; color: var(--accent); font-family: 'DM Sans', sans-serif; font-size: 15px; cursor: pointer; padding: 0; margin-bottom: 16px; }
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; }
 
-  .section-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
+  .add-doc-btn { background: var(--accent); color: #000; border: none; border-radius: 10px; padding: 8px 14px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 700;
-  }
+  .receipt-thumb { width: 100%; max-height: 160px; object-fit: contain; border-radius: 8px; margin-top: 10px; cursor: pointer; }
 
-  .add-doc-btn {
-    background: var(--accent);
-    color: #000;
-    border: none;
-    border-radius: 10px;
-    padding: 8px 14px;
-    font-family: 'Syne', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .image-upload-area {
-    border: 2px dashed var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: var(--card2);
-    min-height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .image-upload-area:active { border-color: var(--accent); }
-  .image-upload-area img { max-width: 100%; max-height: 200px; border-radius: 8px; object-fit: contain; }
-  .img-clear-btn { display: block; margin-top: 8px; background: none; border: 1px solid var(--red); color: var(--red); border-radius: 8px; padding: 6px 14px; font-size: 13px; cursor: pointer; font-family: "DM Sans", sans-serif; }
-
-  .notification-info {
-    background: rgba(0,212,160,0.08);
-    border: 1px solid rgba(0,212,160,0.2);
-    border-radius: 12px;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .notification-info { background: rgba(0,212,160,0.08); border: 1px solid rgba(0,212,160,0.2); border-radius: 12px; padding: 12px 16px; font-size: 13px; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
 </style>
 </head>
 <body>
 
-<!-- TOP NAV -->
 <div class="top-nav">
   <div class="tab-switcher">
-    <button class="tab-btn active" onclick="switchTab('warranties')" id="tab-warranties">
-      🧾 Гаранции
-    </button>
-    <button class="tab-btn" onclick="switchTab('vehicles')" id="tab-vehicles">
-      🚗 Автомобили
-    </button>
+    <button class="tab-btn active" onclick="switchTab('warranties')" id="tab-warranties">🧾 Гаранции</button>
+    <button class="tab-btn" onclick="switchTab('vehicles')" id="tab-vehicles">🚗 Автомобили</button>
   </div>
   <div class="settings-btn" onclick="switchTab('settings')">⚙️</div>
 </div>
 
-<!-- WARRANTIES SCREEN -->
 <div class="screen active" id="screen-warranties">
   <div class="filters">
     <div class="filter-chip active" onclick="setFilter('warranties','all',this)">Всички</div>
@@ -605,7 +280,6 @@
   <div id="warranties-list"></div>
 </div>
 
-<!-- VEHICLES SCREEN -->
 <div class="screen" id="screen-vehicles">
   <div class="filters">
     <div class="filter-chip active" onclick="setFilter('vehicles','all',this)">Всички</div>
@@ -615,12 +289,10 @@
   <div id="vehicles-list"></div>
 </div>
 
-<!-- VEHICLE DETAIL SCREEN -->
 <div class="screen" id="screen-vehicle-detail">
   <div id="vehicle-detail-content"></div>
 </div>
 
-<!-- SETTINGS SCREEN -->
 <div class="screen" id="screen-settings">
   <div class="settings-card">
     <h3>🔔 Предупреждение за изтичане</h3>
@@ -642,7 +314,6 @@
   </div>
 </div>
 
-<!-- FAB -->
 <button class="fab" id="fab-btn" onclick="openAddModal()">
   <span style="font-size:20px">+</span>
   <span id="fab-label">Нова гаранция</span>
@@ -685,9 +356,12 @@
     <div class="form-group">
       <label>Снимка на касова бележка (по желание)</label>
       <div class="image-upload-area" id="w-image-area" onclick="document.getElementById('w-image-input').click()">
-        <div id="w-image-preview-wrap"><span style="font-size:32px">📷</span><div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div></div>
+        <div id="w-image-preview">
+          <span style="font-size:32px">📷</span>
+          <div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div>
+        </div>
       </div>
-      <input type="file" id="w-image-input" accept="image/*" capture="environment" style="display:none" onchange="previewImage('w-image-input','w-image-preview-wrap','w-image-data')">
+      <input type="file" id="w-image-input" accept="image/*" capture="environment" style="display:none" onchange="handleImageSelect('w-image-input','w-image-preview','w-image-data')">
       <input type="hidden" id="w-image-data">
     </div>
     <button class="btn-primary" onclick="saveWarranty()">Запази</button>
@@ -735,8 +409,8 @@
     <input type="hidden" id="doc-vehicle-id">
     <div class="form-group">
       <label>Вид документ *</label>
-      <select id="d-type">
-        <option value="">Избери или напиши</option>
+      <select id="d-type-select">
+        <option value="">Избери вид</option>
         <option>Гражданска отговорност</option>
         <option>Каско</option>
         <option>ГТП</option>
@@ -746,15 +420,15 @@
       </select>
     </div>
     <div class="form-group">
-      <label>Или напиши сам</label>
+      <label>Или напиши сам (по желание)</label>
       <input type="text" id="d-type-custom" placeholder="напр. Карта СБА">
     </div>
     <div class="form-group">
-      <label>Валидно от</label>
+      <label>Валидно от (по желание)</label>
       <input type="date" id="d-from">
     </div>
     <div class="form-group">
-      <label>Валидно до</label>
+      <label>Валидно до (по желание)</label>
       <input type="date" id="d-to">
     </div>
     <div class="form-group">
@@ -764,9 +438,12 @@
     <div class="form-group">
       <label>Снимка на документ (по желание)</label>
       <div class="image-upload-area" id="d-image-area" onclick="document.getElementById('d-image-input').click()">
-        <div id="d-image-preview-wrap"><span style="font-size:32px">📷</span><div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div></div>
+        <div id="d-image-preview">
+          <span style="font-size:32px">📷</span>
+          <div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div>
+        </div>
       </div>
-      <input type="file" id="d-image-input" accept="image/*" capture="environment" style="display:none" onchange="previewImage('d-image-input','d-image-preview-wrap','d-image-data')">
+      <input type="file" id="d-image-input" accept="image/*" capture="environment" style="display:none" onchange="handleImageSelect('d-image-input','d-image-preview','d-image-data')">
       <input type="hidden" id="d-image-data">
     </div>
     <button class="btn-primary" onclick="saveDocument()">Запази</button>
@@ -785,17 +462,26 @@
   </div>
 </div>
 
-<!-- SNACKBAR -->
+<!-- IMAGE VIEWER -->
+<div class="modal-overlay" id="image-viewer-modal">
+  <div class="modal" style="background:#000;padding:10px">
+    <div style="text-align:right;margin-bottom:8px">
+      <button onclick="closeModal('image-viewer-modal')" style="background:none;border:none;color:#fff;font-size:24px;cursor:pointer">✕</button>
+    </div>
+    <img id="image-viewer-img" src="" style="width:100%;border-radius:8px">
+  </div>
+</div>
+
 <div class="snackbar" id="snackbar"></div>
 
 <script>
-// ═══════════════════════════════════════════════
-// DATA LAYER
-// ═══════════════════════════════════════════════
-
-function getData(key, def=[]) {
+// ═══════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════
+function getData(key, def) {
+  if (def === undefined) def = [];
   try { return JSON.parse(localStorage.getItem(key)) || def; }
-  catch { return def; }
+  catch(e) { return def; }
 }
 
 function setData(key, val) {
@@ -806,60 +492,59 @@ function getSettings() {
   return getData('mg_settings', {alertDays: 30});
 }
 
-function saveSettingsData(s) {
-  setData('mg_settings', s);
-}
-
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // STATE
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
+var currentTab = 'warranties';
+var warrantyFilter = 'all';
+var vehicleFilter = 'all';
+var deleteCallback = null;
+var currentVehicleId = null;
 
-let currentTab = 'warranties';
-let warrantyFilter = 'all';
-let vehicleFilter = 'all';
-let deleteCallback = null;
-let currentVehicleId = null;
-
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // INIT
-// ═══════════════════════════════════════════════
-
-document.addEventListener('DOMContentLoaded', () => {
-  const s = getSettings();
+// ═══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', function() {
+  var s = getSettings();
   document.getElementById('alert-slider').value = s.alertDays;
   document.getElementById('days-label').textContent = s.alertDays + ' дни';
   renderWarranties();
   renderVehicles();
   requestNotificationPermission();
-  scheduleNotifications();
+
+  document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) overlay.classList.remove('open');
+    });
+  });
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  }
 });
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // NAVIGATION
-// ═══════════════════════════════════════════════
-
+// ═══════════════════════════════════════════
 function switchTab(tab) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('screen-' + tab)?.classList.add('active');
-  document.getElementById('tab-' + tab)?.classList.add('active');
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  var screen = document.getElementById('screen-' + tab);
+  if (screen) screen.classList.add('active');
+  var tabBtn = document.getElementById('tab-' + tab);
+  if (tabBtn) tabBtn.classList.add('active');
 
-  const fab = document.getElementById('fab-btn');
-  const fabLabel = document.getElementById('fab-label');
+  var fab = document.getElementById('fab-btn');
+  var fabLabel = document.getElementById('fab-label');
+  currentTab = tab;
 
   if (tab === 'warranties') {
-    currentTab = 'warranties';
     fab.style.display = 'flex';
     fabLabel.textContent = 'Нова гаранция';
   } else if (tab === 'vehicles') {
-    currentTab = 'vehicles';
     fab.style.display = 'flex';
     fabLabel.textContent = 'Нов автомобил';
-  } else if (tab === 'vehicle-detail') {
-    currentTab = 'vehicle-detail';
-    fab.style.display = 'none';
   } else {
-    currentTab = tab;
     fab.style.display = 'none';
   }
 }
@@ -875,44 +560,41 @@ function goBack() {
   renderVehicles();
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // FILTERS
-// ═══════════════════════════════════════════════
-
+// ═══════════════════════════════════════════
 function setFilter(screen, filter, el) {
-  el.closest('.filters').querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  el.closest('.filters').querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
   el.classList.add('active');
   if (screen === 'warranties') { warrantyFilter = filter; renderWarranties(); }
   else { vehicleFilter = filter; renderVehicles(); }
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // HELPERS
-// ═══════════════════════════════════════════════
-
+// ═══════════════════════════════════════════
 function daysRemaining(dateStr) {
   if (!dateStr) return 9999;
-  const diff = new Date(dateStr) - new Date();
-  return Math.floor(diff / 86400000);
+  return Math.floor((new Date(dateStr) - new Date()) / 86400000);
 }
 
 function formatDate(dateStr) {
   if (!dateStr) return '—';
-  const d = new Date(dateStr);
+  var d = new Date(dateStr);
   return d.toLocaleDateString('bg-BG', {day:'2-digit', month:'short', year:'numeric'});
 }
 
 function getStatus(days) {
-  const alertDays = getSettings().alertDays;
+  var alertDays = getSettings().alertDays;
   if (days < 0) return 'expired';
   if (days <= alertDays) return 'expiring';
   return 'active';
 }
 
-function statusBadge(status, days) {
-  if (status === 'expired') return `<span class="status-badge badge-red">Изтекъл</span>`;
-  if (status === 'expiring') return `<span class="status-badge badge-orange">Изтича</span>`;
-  return `<span class="status-badge badge-green">Активен</span>`;
+function statusBadge(status) {
+  if (status === 'expired') return '<span class="status-badge badge-red">Изтекъл</span>';
+  if (status === 'expiring') return '<span class="status-badge badge-orange">Изтича</span>';
+  return '<span class="status-badge badge-green">Активен</span>';
 }
 
 function statusClass(status) {
@@ -929,21 +611,33 @@ function progressColor(status) {
 
 function calcProgress(purchaseDate, expiryDate) {
   if (!purchaseDate || !expiryDate) return 0;
-  const total = new Date(expiryDate) - new Date(purchaseDate);
-  const elapsed = Date.now() - new Date(purchaseDate);
+  var total = new Date(expiryDate) - new Date(purchaseDate);
+  var elapsed = Date.now() - new Date(purchaseDate);
   return Math.min(100, Math.max(0, Math.round(elapsed / total * 100)));
 }
 
-function previewImage(inputId, previewId, dataId) {
-  const file = document.getElementById(inputId).files[0];
+function genId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ═══════════════════════════════════════════
+// IMAGE HANDLING
+// ═══════════════════════════════════════════
+function handleImageSelect(inputId, previewId, dataId) {
+  var file = document.getElementById(inputId).files[0];
   if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const data = e.target.result;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var data = e.target.result;
     document.getElementById(dataId).value = data;
     document.getElementById(previewId).innerHTML =
-      '<img src="' + data + '">' +
-      '<button class="img-clear-btn" onclick="clearImage(event,'' + inputId + '','' + previewId + '','' + dataId + '')">✕ Премахни снимката</button>';
+      '<img src="' + data + '" style="max-width:100%;max-height:200px;border-radius:8px;object-fit:contain">' +
+      '<button class="img-clear-btn" onclick="clearImage(event,\'' + inputId + '\',\'' + previewId + '\',\'' + dataId + '\')">✕ Премахни снимката</button>';
   };
   reader.readAsDataURL(file);
 }
@@ -952,260 +646,229 @@ function clearImage(e, inputId, previewId, dataId) {
   e.stopPropagation();
   document.getElementById(inputId).value = '';
   document.getElementById(dataId).value = '';
-  document.getElementById(previewId).innerHTML = '<span style="font-size:32px">📷</span><div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div>';
+  resetImagePreview(previewId);
 }
 
-function genId() {
-  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+function resetImagePreview(previewId) {
+  document.getElementById(previewId).innerHTML =
+    '<span style="font-size:32px">📷</span>' +
+    '<div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div>';
 }
 
-// ═══════════════════════════════════════════════
+function setImagePreview(previewId, dataId, imgData) {
+  if (imgData) {
+    document.getElementById(dataId).value = imgData;
+    document.getElementById(previewId).innerHTML =
+      '<img src="' + imgData + '" style="max-width:100%;max-height:200px;border-radius:8px;object-fit:contain">' +
+      '<button class="img-clear-btn" onclick="clearImage(event,\'' + previewId.replace('-preview','-input') + '\',\'' + previewId + '\',\'' + dataId + '\')">✕ Премахни снимката</button>';
+  } else {
+    resetImagePreview(previewId);
+    document.getElementById(dataId).value = '';
+  }
+}
+
+function viewImage(src) {
+  document.getElementById('image-viewer-img').src = src;
+  document.getElementById('image-viewer-modal').classList.add('open');
+}
+
+// ═══════════════════════════════════════════
 // RENDER WARRANTIES
-// ═══════════════════════════════════════════════
-
+// ═══════════════════════════════════════════
 function renderWarranties() {
-  let warranties = getData('mg_warranties');
-  const alertDays = getSettings().alertDays;
+  var warranties = getData('mg_warranties');
 
   if (warrantyFilter === 'expiring') {
-    warranties = warranties.filter(w => {
-      const d = daysRemaining(w.expiry);
-      const s = getStatus(d);
+    warranties = warranties.filter(function(w) {
+      var s = getStatus(daysRemaining(w.expiry));
       return s === 'expiring' || s === 'expired';
     });
   } else if (warrantyFilter === 'active') {
-    warranties = warranties.filter(w => getStatus(daysRemaining(w.expiry)) === 'active');
+    warranties = warranties.filter(function(w) { return getStatus(daysRemaining(w.expiry)) === 'active'; });
   }
 
-  const el = document.getElementById('warranties-list');
+  var el = document.getElementById('warranties-list');
 
   if (warranties.length === 0) {
-    el.innerHTML = `<div class="empty">
-      <div class="empty-icon">🧾</div>
-      <h3>Няма гаранции</h3>
-      <p>Натисни + за да добавиш</p>
-    </div>`;
+    el.innerHTML = '<div class="empty"><div class="empty-icon">🧾</div><h3>Няма гаранции</h3><p>Натисни + за да добавиш</p></div>';
     return;
   }
 
-  el.innerHTML = warranties.map(w => {
-    const days = daysRemaining(w.expiry);
-    const status = getStatus(days);
-    const sc = statusClass(status);
-    const progress = calcProgress(w.purchase, w.expiry);
-    const daysText = days < 0 ? 'Изтекла' : days + ' дни';
-    const cardClass = status === 'expired' ? 'expired' : status === 'expiring' ? 'expiring' : '';
+  el.innerHTML = warranties.map(function(w) {
+    var days = daysRemaining(w.expiry);
+    var status = getStatus(days);
+    var sc = statusClass(status);
+    var progress = calcProgress(w.purchase, w.expiry);
+    var daysText = days < 0 ? 'Изтекла' : days + ' дни';
+    var cardClass = status === 'expired' ? 'expired' : status === 'expiring' ? 'expiring' : '';
+    var imgHtml = w.image ? '<img src="' + w.image + '" class="receipt-thumb" onclick="viewImage(\'' + w.image + '\')" alt="Касова бележка">' : '';
 
-    return `<div class="card ${cardClass}">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-icon ${sc}">🧾</div>
-          <div>
-            <div class="card-title">${w.title}</div>
-            <div class="card-sub">${w.category}${w.model ? ' • ' + w.model : ''}</div>
-          </div>
-          ${statusBadge(status, days)}
-        </div>
-        <div class="card-info">
-          <div class="info-col">
-            <label>ДАТА НА ПОКУПКА</label>
-            <span>${formatDate(w.purchase)}</span>
-          </div>
-          <div class="info-col">
-            <label>ИЗТИЧА НА</label>
-            <span class="${status !== 'active' ? sc : ''}">${formatDate(w.expiry)}</span>
-          </div>
-          <div class="info-col">
-            <label>ОСТАВАТ</label>
-            <span class="${sc}">${daysText}</span>
-          </div>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill" style="width:${progress}%;background:${progressColor(status)}"></div>
-        </div>
-        <div class="progress-label">${progress}% до изтичане</div>
-        ${status === 'expiring' ? `<div class="alert-row">⚠️ Изтича след ${days} дни!</div>` : ''}
-        ${status === 'expired' ? `<div class="alert-row" style="color:var(--red)">🔴 Гаранцията е изтекла!</div>` : ''}
-      </div>
-      <div class="card-actions">
-        <button class="action-btn" onclick="editWarranty('${w.id}')" title="Редактирай">✏️</button>
-        <button class="action-btn danger" onclick="askDelete('Изтриване на &quot;${w.title}&quot;?', () => deleteWarranty('${w.id}'))" title="Изтрий">🗑️</button>
-      </div>
-    </div>`;
+    return '<div class="card ' + cardClass + '">' +
+      '<div class="card-body">' +
+        '<div class="card-header">' +
+          '<div class="card-icon ' + sc + '">🧾</div>' +
+          '<div><div class="card-title">' + esc(w.title) + '</div>' +
+          '<div class="card-sub">' + esc(w.category) + (w.model ? ' • ' + esc(w.model) : '') + '</div></div>' +
+          statusBadge(status) +
+        '</div>' +
+        '<div class="card-info">' +
+          '<div class="info-col"><label>ДАТА НА ПОКУПКА</label><span>' + formatDate(w.purchase) + '</span></div>' +
+          '<div class="info-col"><label>ИЗТИЧА НА</label><span class="' + (status !== 'active' ? sc : '') + '">' + formatDate(w.expiry) + '</span></div>' +
+          '<div class="info-col"><label>ОСТАВАТ</label><span class="' + sc + '">' + daysText + '</span></div>' +
+        '</div>' +
+        '<div class="progress-bar"><div class="progress-fill" style="width:' + progress + '%;background:' + progressColor(status) + '"></div></div>' +
+        '<div class="progress-label">' + progress + '% до изтичане</div>' +
+        (status === 'expiring' ? '<div class="alert-row">⚠️ Изтича след ' + days + ' дни!</div>' : '') +
+        (status === 'expired' ? '<div class="alert-row" style="color:var(--red)">🔴 Гаранцията е изтекла!</div>' : '') +
+        imgHtml +
+      '</div>' +
+      '<div class="card-actions">' +
+        '<button class="action-btn" onclick="editWarranty(\'' + w.id + '\')">✏️</button>' +
+        '<button class="action-btn danger" onclick="askDelete(\'Изтриване на гаранцията?\', function(){ deleteWarranty(\'' + w.id + '\') })">🗑️</button>' +
+      '</div>' +
+    '</div>';
   }).join('');
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // RENDER VEHICLES
-// ═══════════════════════════════════════════════
-
+// ═══════════════════════════════════════════
 function getVehicleStatus(vehicle) {
   if (!vehicle.documents || vehicle.documents.length === 0) return 'active';
-  const statuses = vehicle.documents.map(d => getStatus(daysRemaining(d.validTo)));
-  if (statuses.includes('expired')) return 'expired';
-  if (statuses.includes('expiring')) return 'expiring';
+  var statuses = vehicle.documents.map(function(d) { return getStatus(daysRemaining(d.validTo)); });
+  if (statuses.indexOf('expired') !== -1) return 'expired';
+  if (statuses.indexOf('expiring') !== -1) return 'expiring';
   return 'active';
 }
 
 function renderVehicles() {
-  let vehicles = getData('mg_vehicles');
+  var vehicles = getData('mg_vehicles');
 
   if (vehicleFilter === 'expiring') {
-    vehicles = vehicles.filter(v => {
-      const s = getVehicleStatus(v);
-      return s === 'expiring' || s === 'expired';
-    });
+    vehicles = vehicles.filter(function(v) { var s = getVehicleStatus(v); return s === 'expiring' || s === 'expired'; });
   } else if (vehicleFilter === 'active') {
-    vehicles = vehicles.filter(v => getVehicleStatus(v) === 'active');
+    vehicles = vehicles.filter(function(v) { return getVehicleStatus(v) === 'active'; });
   }
 
-  const el = document.getElementById('vehicles-list');
+  var el = document.getElementById('vehicles-list');
 
   if (vehicles.length === 0) {
-    el.innerHTML = `<div class="empty">
-      <div class="empty-icon">🚗</div>
-      <h3>Няма автомобили</h3>
-      <p>Натисни + за да добавиш</p>
-    </div>`;
+    el.innerHTML = '<div class="empty"><div class="empty-icon">🚗</div><h3>Няма автомобили</h3><p>Натисни + за да добавиш</p></div>';
     return;
   }
 
-  el.innerHTML = vehicles.map(v => {
-    const status = getVehicleStatus(v);
-    const sc = statusClass(status);
-    const cardClass = status === 'expired' ? 'expired' : status === 'expiring' ? 'expiring' : '';
-    const docs = (v.documents || []);
+  el.innerHTML = vehicles.map(function(v) {
+    var status = getVehicleStatus(v);
+    var sc = statusClass(status);
+    var cardClass = status === 'expired' ? 'expired' : status === 'expiring' ? 'expiring' : '';
+    var docs = v.documents || [];
 
-    const docsHtml = docs.length > 0 ? `
-      <div style="border-top:1px solid var(--border);padding-top:12px;margin-top:4px">
-        ${docs.map(d => {
-          const days = daysRemaining(d.validTo);
-          const ds = getStatus(days);
-          const dc = statusClass(ds);
-          const dText = !d.validTo ? '—' : days < 0 ? 'Изтекъл' : days + ' дни';
-          return `<div class="doc-row">
-            <div class="doc-dot" style="background:var(--${dc === 'green' ? 'accent' : dc})"></div>
-            <div class="doc-name">${d.type}</div>
-            <div class="doc-days" style="color:var(--${dc === 'green' ? 'accent' : dc})">${dText}</div>
-          </div>`;
-        }).join('')}
-      </div>` : `<div style="color:var(--muted);font-size:13px;margin-top:8px;text-align:center">Натисни за да добавиш документи</div>`;
+    var docsHtml = docs.length > 0
+      ? '<div style="border-top:1px solid var(--border);padding-top:12px;margin-top:4px">' +
+        docs.map(function(d) {
+          var days = daysRemaining(d.validTo);
+          var ds = getStatus(days);
+          var dc = statusClass(ds);
+          var dText = !d.validTo ? '—' : days < 0 ? 'Изтекъл' : days + ' дни';
+          var dotColor = dc === 'green' ? 'var(--accent)' : dc === 'orange' ? 'var(--orange)' : 'var(--red)';
+          var daysColor = dc === 'green' ? 'var(--accent)' : dc === 'orange' ? 'var(--orange)' : 'var(--red)';
+          return '<div class="doc-row">' +
+            '<div class="doc-dot" style="background:' + dotColor + '"></div>' +
+            '<div class="doc-name">' + esc(d.type) + '</div>' +
+            '<div class="doc-days" style="color:' + daysColor + '">' + dText + '</div>' +
+          '</div>';
+        }).join('') +
+        '</div>'
+      : '<div style="color:var(--muted);font-size:13px;margin-top:8px;text-align:center">Натисни за да добавиш документи</div>';
 
-    return `<div class="card ${cardClass}" onclick="openVehicleDetail('${v.id}')" style="cursor:pointer">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-icon ${sc}">🚗</div>
-          <div>
-            <div class="card-title">${v.name}</div>
-            <div class="card-sub">${v.plate}${v.brand ? ' • ' + v.brand : ''}${v.year ? ' ' + v.year : ''}</div>
-          </div>
-          ${statusBadge(status)}
-        </div>
-        ${docsHtml}
-      </div>
-      <div class="card-actions" onclick="event.stopPropagation()">
-        <button class="action-btn" onclick="editVehicle('${v.id}')" title="Редактирай">✏️</button>
-        <button class="action-btn danger" onclick="askDelete('Изтриване на &quot;${v.name}&quot;?', () => deleteVehicle('${v.id}'))" title="Изтрий">🗑️</button>
-      </div>
-    </div>`;
+    return '<div class="card ' + cardClass + '" onclick="openVehicleDetail(\'' + v.id + '\')" style="cursor:pointer">' +
+      '<div class="card-body">' +
+        '<div class="card-header">' +
+          '<div class="card-icon ' + sc + '">🚗</div>' +
+          '<div><div class="card-title">' + esc(v.name) + '</div>' +
+          '<div class="card-sub">' + esc(v.plate) + (v.brand ? ' • ' + esc(v.brand) : '') + (v.year ? ' ' + esc(v.year) : '') + '</div></div>' +
+          statusBadge(status) +
+        '</div>' +
+        docsHtml +
+      '</div>' +
+      '<div class="card-actions" onclick="event.stopPropagation()">' +
+        '<button class="action-btn" onclick="editVehicle(\'' + v.id + '\')">✏️</button>' +
+        '<button class="action-btn danger" onclick="askDelete(\'Изтриване на автомобила?\', function(){ deleteVehicle(\'' + v.id + '\') })">🗑️</button>' +
+      '</div>' +
+    '</div>';
   }).join('');
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // RENDER VEHICLE DETAIL
-// ═══════════════════════════════════════════════
-
+// ═══════════════════════════════════════════
 function renderVehicleDetail(vehicleId) {
-  const vehicles = getData('mg_vehicles');
-  const v = vehicles.find(x => x.id === vehicleId);
+  var vehicles = getData('mg_vehicles');
+  var v = null;
+  for (var i = 0; i < vehicles.length; i++) { if (vehicles[i].id === vehicleId) { v = vehicles[i]; break; } }
   if (!v) return;
 
-  const docs = v.documents || [];
-  const status = getVehicleStatus(v);
-  const sc = statusClass(status);
+  var docs = v.documents || [];
+  var status = getVehicleStatus(v);
+  var sc = statusClass(status);
 
-  const docsHtml = docs.length > 0 ? docs.map(d => {
-    const days = daysRemaining(d.validTo);
-    const ds = getStatus(days);
-    const dc = statusClass(ds);
-    const dText = !d.validTo ? '—' : days < 0 ? 'Изтекъл' : days + ' дни';
-    const cardClass = ds === 'expired' ? 'expired' : ds === 'expiring' ? 'expiring' : '';
+  var docsHtml = docs.length > 0 ? docs.map(function(d) {
+    var days = daysRemaining(d.validTo);
+    var ds = getStatus(days);
+    var dc = statusClass(ds);
+    var dText = !d.validTo ? '—' : days < 0 ? 'Изтekъл' : days + ' дни';
+    var cardClass = ds === 'expired' ? 'expired' : ds === 'expiring' ? 'expiring' : '';
+    var imgHtml = d.image ? '<img src="' + d.image + '" class="receipt-thumb" onclick="viewImage(\'' + d.image + '\')" alt="Документ">' : '';
 
-    return `<div class="card ${cardClass}">
-      <div class="card-body">
-        <div class="card-header">
-          <div class="card-icon ${dc}">📄</div>
-          <div>
-            <div class="card-title">${d.type}</div>
-            ${d.notes ? `<div class="card-sub">${d.notes}</div>` : ''}
-          </div>
-          ${statusBadge(ds, days)}
-        </div>
-        <div class="card-info">
-          <div class="info-col">
-            <label>ВАЛИДНО ОТ</label>
-            <span>${formatDate(d.validFrom)}</span>
-          </div>
-          <div class="info-col">
-            <label>ВАЛИДНО ДО</label>
-            <span class="${ds !== 'active' ? dc : ''}">${formatDate(d.validTo)}</span>
-          </div>
-          <div class="info-col">
-            <label>ОСТАВАТ</label>
-            <span class="${dc}">${dText}</span>
-          </div>
-        </div>
-        ${d.validFrom && d.validTo ? `
-        <div class="progress-bar">
-          <div class="progress-fill" style="width:${calcProgress(d.validFrom, d.validTo)}%;background:${progressColor(ds)}"></div>
-        </div>` : ''}
-        ${ds === 'expiring' ? `<div class="alert-row">⚠️ Изтича след ${days} дни!</div>` : ''}
-        ${ds === 'expired' ? `<div class="alert-row" style="color:var(--red)">🔴 Документът е изтекъл!</div>` : ''}
-      </div>
-      <div class="card-actions">
-        <button class="action-btn" onclick="editDocument('${vehicleId}','${d.id}')" title="Редактирай">✏️</button>
-        <button class="action-btn danger" onclick="askDelete('Изтриване на &quot;${d.type}&quot;?', () => deleteDocument('${vehicleId}','${d.id}'))" title="Изтрий">🗑️</button>
-      </div>
-    </div>`;
-  }).join('') : `<div class="empty">
-    <div class="empty-icon">📂</div>
-    <h3>Няма документи</h3>
-    <p>Натисни "Добави" за да добавиш</p>
-  </div>`;
+    return '<div class="card ' + cardClass + '">' +
+      '<div class="card-body">' +
+        '<div class="card-header">' +
+          '<div class="card-icon ' + dc + '">📄</div>' +
+          '<div><div class="card-title">' + esc(d.type) + '</div>' +
+          (d.notes ? '<div class="card-sub">' + esc(d.notes) + '</div>' : '') + '</div>' +
+          statusBadge(ds) +
+        '</div>' +
+        '<div class="card-info">' +
+          '<div class="info-col"><label>ВАЛИДНО ОТ</label><span>' + formatDate(d.validFrom) + '</span></div>' +
+          '<div class="info-col"><label>ВАЛИДНО ДО</label><span class="' + (ds !== 'active' ? dc : '') + '">' + formatDate(d.validTo) + '</span></div>' +
+          '<div class="info-col"><label>ОСТАВАТ</label><span class="' + dc + '">' + dText + '</span></div>' +
+        '</div>' +
+        (d.validFrom && d.validTo ? '<div class="progress-bar"><div class="progress-fill" style="width:' + calcProgress(d.validFrom, d.validTo) + '%;background:' + progressColor(ds) + '"></div></div>' : '') +
+        (ds === 'expiring' ? '<div class="alert-row">⚠️ Изтича след ' + days + ' дни!</div>' : '') +
+        (ds === 'expired' ? '<div class="alert-row" style="color:var(--red)">🔴 Документът е изтекъл!</div>' : '') +
+        imgHtml +
+      '</div>' +
+      '<div class="card-actions">' +
+        '<button class="action-btn" onclick="editDocument(\'' + vehicleId + '\',\'' + d.id + '\')">✏️</button>' +
+        '<button class="action-btn danger" onclick="askDelete(\'Изтриване на документа?\', function(){ deleteDocument(\'' + vehicleId + '\',\'' + d.id + '\') })">🗑️</button>' +
+      '</div>' +
+    '</div>';
+  }).join('') : '<div class="empty"><div class="empty-icon">📂</div><h3>Няма документи</h3><p>Натисни "Добави" за да добавиш</p></div>';
 
-  document.getElementById('vehicle-detail-content').innerHTML = `
-    <button class="back-btn" onclick="goBack()">← Назад</button>
-    <div class="card" style="margin-bottom:20px">
-      <div class="card-body">
-        <div class="card-header" style="margin-bottom:0">
-          <div class="card-icon ${sc}" style="width:52px;height:52px;font-size:24px">🚗</div>
-          <div>
-            <div class="card-title" style="font-size:18px">${v.name}</div>
-            <div style="color:var(--accent);font-weight:600;font-size:14px">${v.plate}</div>
-            ${v.brand ? `<div class="card-sub">${v.brand}${v.model ? ' ' + v.model : ''}${v.year ? ' • ' + v.year : ''}</div>` : ''}
-          </div>
-          ${statusBadge(status)}
-        </div>
-      </div>
-    </div>
-    <div class="section-header">
-      <div class="section-title">Документи</div>
-      <button class="add-doc-btn" onclick="openAddDocModal('${vehicleId}')">+ Добави</button>
-    </div>
-    ${docsHtml}
-  `;
+  document.getElementById('vehicle-detail-content').innerHTML =
+    '<button class="back-btn" onclick="goBack()">← Назад</button>' +
+    '<div class="card" style="margin-bottom:20px"><div class="card-body">' +
+      '<div class="card-header" style="margin-bottom:0">' +
+        '<div class="card-icon ' + sc + '" style="width:52px;height:52px;font-size:24px">🚗</div>' +
+        '<div><div class="card-title" style="font-size:18px">' + esc(v.name) + '</div>' +
+        '<div style="color:var(--accent);font-weight:600;font-size:14px">' + esc(v.plate) + '</div>' +
+        (v.brand ? '<div class="card-sub">' + esc(v.brand) + (v.model ? ' ' + esc(v.model) : '') + (v.year ? ' • ' + v.year : '') + '</div>' : '') +
+        '</div>' + statusBadge(status) +
+      '</div>' +
+    '</div></div>' +
+    '<div class="section-header">' +
+      '<div class="section-title">Документи</div>' +
+      '<button class="add-doc-btn" onclick="openAddDocModal(\'' + vehicleId + '\')">+ Добави</button>' +
+    '</div>' +
+    docsHtml;
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // MODALS
-// ═══════════════════════════════════════════════
-
+// ═══════════════════════════════════════════
 function openAddModal() {
-  if (currentTab === 'warranties' || currentTab === 'settings') {
-    openAddWarrantyModal();
-  } else {
-    openAddVehicleModal();
-  }
+  if (currentTab === 'warranties') openAddWarrantyModal();
+  else if (currentTab === 'vehicles') openAddVehicleModal();
 }
 
 function openAddWarrantyModal() {
@@ -1216,14 +879,16 @@ function openAddWarrantyModal() {
   document.getElementById('w-model').value = '';
   document.getElementById('w-purchase').value = new Date().toISOString().split('T')[0];
   document.getElementById('w-expiry').value = '';
+  document.getElementById('w-image-input').value = '';
+  resetImagePreview('w-image-preview');
   document.getElementById('w-image-data').value = '';
-  document.getElementById('w-image-preview-wrap').innerHTML = '<span style="font-size:32px">📷</span><div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div>';
   document.getElementById('warranty-modal').classList.add('open');
 }
 
 function editWarranty(id) {
-  const warranties = getData('mg_warranties');
-  const w = warranties.find(x => x.id === id);
+  var warranties = getData('mg_warranties');
+  var w = null;
+  for (var i = 0; i < warranties.length; i++) { if (warranties[i].id === id) { w = warranties[i]; break; } }
   if (!w) return;
   document.getElementById('warranty-modal-title').textContent = 'Редактиране';
   document.getElementById('warranty-edit-id').value = id;
@@ -1232,6 +897,7 @@ function editWarranty(id) {
   document.getElementById('w-model').value = w.model || '';
   document.getElementById('w-purchase').value = w.purchase;
   document.getElementById('w-expiry').value = w.expiry;
+  setImagePreview('w-image-preview', 'w-image-data', w.image || '');
   document.getElementById('warranty-modal').classList.add('open');
 }
 
@@ -1247,8 +913,9 @@ function openAddVehicleModal() {
 }
 
 function editVehicle(id) {
-  const vehicles = getData('mg_vehicles');
-  const v = vehicles.find(x => x.id === id);
+  var vehicles = getData('mg_vehicles');
+  var v = null;
+  for (var i = 0; i < vehicles.length; i++) { if (vehicles[i].id === id) { v = vehicles[i]; break; } }
   if (!v) return;
   document.getElementById('vehicle-modal-title').textContent = 'Редактиране на кола';
   document.getElementById('vehicle-edit-id').value = id;
@@ -1264,28 +931,34 @@ function openAddDocModal(vehicleId) {
   document.getElementById('doc-modal-title').textContent = 'Нов документ';
   document.getElementById('doc-edit-id').value = '';
   document.getElementById('doc-vehicle-id').value = vehicleId;
-  document.getElementById('d-type').value = '';
+  document.getElementById('d-type-select').value = '';
   document.getElementById('d-type-custom').value = '';
   document.getElementById('d-from').value = '';
   document.getElementById('d-to').value = '';
   document.getElementById('d-notes').value = '';
+  document.getElementById('d-image-input').value = '';
+  resetImagePreview('d-image-preview');
+  document.getElementById('d-image-data').value = '';
   document.getElementById('doc-modal').classList.add('open');
 }
 
 function editDocument(vehicleId, docId) {
-  const vehicles = getData('mg_vehicles');
-  const v = vehicles.find(x => x.id === vehicleId);
+  var vehicles = getData('mg_vehicles');
+  var v = null;
+  for (var i = 0; i < vehicles.length; i++) { if (vehicles[i].id === vehicleId) { v = vehicles[i]; break; } }
   if (!v) return;
-  const d = (v.documents || []).find(x => x.id === docId);
+  var d = null;
+  for (var j = 0; j < (v.documents || []).length; j++) { if (v.documents[j].id === docId) { d = v.documents[j]; break; } }
   if (!d) return;
   document.getElementById('doc-modal-title').textContent = 'Редактиране на документ';
   document.getElementById('doc-edit-id').value = docId;
   document.getElementById('doc-vehicle-id').value = vehicleId;
-  document.getElementById('d-type').value = d.type;
+  document.getElementById('d-type-select').value = d.type;
   document.getElementById('d-type-custom').value = '';
   document.getElementById('d-from').value = d.validFrom || '';
   document.getElementById('d-to').value = d.validTo || '';
   document.getElementById('d-notes').value = d.notes || '';
+  setImagePreview('d-image-preview', 'd-image-data', d.image || '');
   document.getElementById('doc-modal').classList.add('open');
 }
 
@@ -1293,31 +966,34 @@ function closeModal(id) {
   document.getElementById(id).classList.remove('open');
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // SAVE / DELETE
-// ═══════════════════════════════════════════════
-
+// ═══════════════════════════════════════════
 function saveWarranty() {
-  const title = document.getElementById('w-title').value.trim();
-  const category = document.getElementById('w-category').value;
-  const model = document.getElementById('w-model').value.trim();
-  const purchase = document.getElementById('w-purchase').value;
-  const expiry = document.getElementById('w-expiry').value;
-  const image = document.getElementById('w-image-data').value;
+  var title = document.getElementById('w-title').value.trim();
+  var category = document.getElementById('w-category').value;
+  var model = document.getElementById('w-model').value.trim();
+  var purchase = document.getElementById('w-purchase').value;
+  var expiry = document.getElementById('w-expiry').value;
+  var image = document.getElementById('w-image-data').value;
 
   if (!title || !category || !purchase || !expiry) {
     showSnackbar('Моля попълни всички задължителни полета!');
     return;
   }
 
-  const warranties = getData('mg_warranties');
-  const editId = document.getElementById('warranty-edit-id').value;
+  var warranties = getData('mg_warranties');
+  var editId = document.getElementById('warranty-edit-id').value;
 
   if (editId) {
-    const idx = warranties.findIndex(w => w.id === editId);
-    if (idx !== -1) warranties[idx] = {...warranties[idx], title, category, model, purchase, expiry, ...(image && {image})};
+    for (var i = 0; i < warranties.length; i++) {
+      if (warranties[i].id === editId) {
+        warranties[i] = {id: editId, title: title, category: category, model: model, purchase: purchase, expiry: expiry, image: image || warranties[i].image || ''};
+        break;
+      }
+    }
   } else {
-    warranties.push({id: genId(), title, category, model, purchase, expiry, image});
+    warranties.push({id: genId(), title: title, category: category, model: model, purchase: purchase, expiry: expiry, image: image});
   }
 
   setData('mg_warranties', warranties);
@@ -1328,25 +1004,29 @@ function saveWarranty() {
 }
 
 function saveVehicle() {
-  const name = document.getElementById('v-name').value.trim();
-  const plate = document.getElementById('v-plate').value.trim();
-  const brand = document.getElementById('v-brand').value.trim();
-  const model = document.getElementById('v-model').value.trim();
-  const year = document.getElementById('v-year').value.trim();
+  var name = document.getElementById('v-name').value.trim();
+  var plate = document.getElementById('v-plate').value.trim();
+  var brand = document.getElementById('v-brand').value.trim();
+  var model = document.getElementById('v-model').value.trim();
+  var year = document.getElementById('v-year').value.trim();
 
   if (!name || !plate) {
     showSnackbar('Моля попълни задължителните полета!');
     return;
   }
 
-  const vehicles = getData('mg_vehicles');
-  const editId = document.getElementById('vehicle-edit-id').value;
+  var vehicles = getData('mg_vehicles');
+  var editId = document.getElementById('vehicle-edit-id').value;
 
   if (editId) {
-    const idx = vehicles.findIndex(v => v.id === editId);
-    if (idx !== -1) vehicles[idx] = {...vehicles[idx], name, plate, brand, model, year};
+    for (var i = 0; i < vehicles.length; i++) {
+      if (vehicles[i].id === editId) {
+        vehicles[i] = {id: editId, name: name, plate: plate, brand: brand, model: model, year: year, documents: vehicles[i].documents || []};
+        break;
+      }
+    }
   } else {
-    vehicles.push({id: genId(), name, plate, brand, model, year, documents: []});
+    vehicles.push({id: genId(), name: name, plate: plate, brand: brand, model: model, year: year, documents: []});
   }
 
   setData('mg_vehicles', vehicles);
@@ -1357,33 +1037,37 @@ function saveVehicle() {
 }
 
 function saveDocument() {
-  const typeSelect = document.getElementById('d-type').value;
-  const typeCustom = document.getElementById('d-type-custom').value.trim();
-  const type = typeCustom || typeSelect;
-  const vehicleId = document.getElementById('doc-vehicle-id').value;
-  const validFrom = document.getElementById('d-from').value;
-  const validTo = document.getElementById('d-to').value;
-  const notes = document.getElementById('d-notes').value.trim();
-  const docImage = document.getElementById('d-image-data').value;
+  var typeSelect = document.getElementById('d-type-select').value;
+  var typeCustom = document.getElementById('d-type-custom').value.trim();
+  var type = typeCustom || typeSelect;
+  var vehicleId = document.getElementById('doc-vehicle-id').value;
+  var validFrom = document.getElementById('d-from').value;
+  var validTo = document.getElementById('d-to').value;
+  var notes = document.getElementById('d-notes').value.trim();
+  var image = document.getElementById('d-image-data').value;
 
   if (!type) {
-    showSnackbar('Моля избери вид документ!');
+    showSnackbar('Моля избери или напиши вид документ!');
     return;
   }
 
-  const vehicles = getData('mg_vehicles');
-  const vIdx = vehicles.findIndex(v => v.id === vehicleId);
+  var vehicles = getData('mg_vehicles');
+  var vIdx = -1;
+  for (var i = 0; i < vehicles.length; i++) { if (vehicles[i].id === vehicleId) { vIdx = i; break; } }
   if (vIdx === -1) return;
-
   if (!vehicles[vIdx].documents) vehicles[vIdx].documents = [];
 
-  const editId = document.getElementById('doc-edit-id').value;
+  var editId = document.getElementById('doc-edit-id').value;
 
   if (editId) {
-    const dIdx = vehicles[vIdx].documents.findIndex(d => d.id === editId);
-    if (dIdx !== -1) vehicles[vIdx].documents[dIdx] = {...vehicles[vIdx].documents[dIdx], type, validFrom, validTo, notes, ...(docImage && {image: docImage})};
+    for (var j = 0; j < vehicles[vIdx].documents.length; j++) {
+      if (vehicles[vIdx].documents[j].id === editId) {
+        vehicles[vIdx].documents[j] = {id: editId, type: type, validFrom: validFrom, validTo: validTo, notes: notes, image: image || vehicles[vIdx].documents[j].image || ''};
+        break;
+      }
+    }
   } else {
-    vehicles[vIdx].documents.push({id: genId(), type, validFrom, validTo, notes, image: docImage});
+    vehicles[vIdx].documents.push({id: genId(), type: type, validFrom: validFrom, validTo: validTo, notes: notes, image: image});
   }
 
   setData('mg_vehicles', vehicles);
@@ -1394,8 +1078,7 @@ function saveDocument() {
 }
 
 function deleteWarranty(id) {
-  let warranties = getData('mg_warranties');
-  warranties = warranties.filter(w => w.id !== id);
+  var warranties = getData('mg_warranties').filter(function(w) { return w.id !== id; });
   setData('mg_warranties', warranties);
   renderWarranties();
   scheduleNotifications();
@@ -1403,8 +1086,7 @@ function deleteWarranty(id) {
 }
 
 function deleteVehicle(id) {
-  let vehicles = getData('mg_vehicles');
-  vehicles = vehicles.filter(v => v.id !== id);
+  var vehicles = getData('mg_vehicles').filter(function(v) { return v.id !== id; });
   setData('mg_vehicles', vehicles);
   renderVehicles();
   scheduleNotifications();
@@ -1412,10 +1094,13 @@ function deleteVehicle(id) {
 }
 
 function deleteDocument(vehicleId, docId) {
-  const vehicles = getData('mg_vehicles');
-  const vIdx = vehicles.findIndex(v => v.id === vehicleId);
-  if (vIdx === -1) return;
-  vehicles[vIdx].documents = (vehicles[vIdx].documents || []).filter(d => d.id !== docId);
+  var vehicles = getData('mg_vehicles');
+  for (var i = 0; i < vehicles.length; i++) {
+    if (vehicles[i].id === vehicleId) {
+      vehicles[i].documents = (vehicles[i].documents || []).filter(function(d) { return d.id !== docId; });
+      break;
+    }
+  }
   setData('mg_vehicles', vehicles);
   renderVehicleDetail(vehicleId);
   scheduleNotifications();
@@ -1433,93 +1118,61 @@ function confirmDelete() {
   if (deleteCallback) { deleteCallback(); deleteCallback = null; }
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // SETTINGS
-// ═══════════════════════════════════════════════
-
+// ═══════════════════════════════════════════
 function updateSlider(val) {
   document.getElementById('days-label').textContent = val + ' дни';
 }
 
 function saveSettings() {
-  const days = parseInt(document.getElementById('alert-slider').value);
-  saveSettingsData({alertDays: days});
+  var days = parseInt(document.getElementById('alert-slider').value);
+  setData('mg_settings', {alertDays: days});
   scheduleNotifications();
   showSnackbar('✓ Настройките са запазени!');
 }
 
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // NOTIFICATIONS
-// ═══════════════════════════════════════════════
-
-async function requestNotificationPermission() {
+// ═══════════════════════════════════════════
+function requestNotificationPermission() {
   if ('Notification' in window && Notification.permission === 'default') {
-    await Notification.requestPermission();
+    Notification.requestPermission();
   }
 }
 
 function scheduleNotifications() {
   if (!('Notification' in window) || Notification.permission !== 'granted') return;
+  var alertDays = getSettings().alertDays;
+  var warranties = getData('mg_warranties');
+  var vehicles = getData('mg_vehicles');
 
-  const alertDays = getSettings().alertDays;
-  const warranties = getData('mg_warranties');
-  const vehicles = getData('mg_vehicles');
-
-  const items = [];
-
-  warranties.forEach(w => {
-    const days = daysRemaining(w.expiry);
+  warranties.forEach(function(w) {
+    var days = daysRemaining(w.expiry);
     if (days >= 0 && days <= alertDays) {
-      items.push({title: '⚠️ Гаранция изтича', body: `${w.title} изтича след ${days} дни`, days});
+      new Notification('⚠️ Гаранция изтича скоро', {body: w.title + ' изтича след ' + days + ' дни'});
     }
   });
 
-  vehicles.forEach(v => {
-    (v.documents || []).forEach(d => {
+  vehicles.forEach(function(v) {
+    (v.documents || []).forEach(function(d) {
       if (!d.validTo) return;
-      const days = daysRemaining(d.validTo);
+      var days = daysRemaining(d.validTo);
       if (days >= 0 && days <= alertDays) {
-        items.push({title: `⚠️ ${v.name} — ${d.type}`, body: `Изтича след ${days} дни`, days});
+        new Notification('⚠️ ' + v.name + ' — ' + d.type, {body: 'Изтича след ' + days + ' дни'});
       }
     });
   });
-
-  // Show notifications for items expiring soon
-  if (items.length > 0 && document.visibilityState === 'hidden') {
-    items.forEach(item => {
-      new Notification(item.title, {
-        body: item.body,
-        icon: '/icon-192.png',
-        badge: '/icon-192.png'
-      });
-    });
-  }
-
-  // Store for service worker
-  localStorage.setItem('mg_pending_notifications', JSON.stringify(items));
 }
 
-// ═══════════════════════════════════════════════
-// UI HELPERS
-// ═══════════════════════════════════════════════
-
+// ═══════════════════════════════════════════
+// UI
+// ═══════════════════════════════════════════
 function showSnackbar(msg) {
-  const sb = document.getElementById('snackbar');
+  var sb = document.getElementById('snackbar');
   sb.textContent = msg;
   sb.classList.add('show');
-  setTimeout(() => sb.classList.remove('show'), 3000);
-}
-
-// Close modals on overlay click
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) overlay.classList.remove('open');
-  });
-});
-
-// Register service worker for background notifications
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
+  setTimeout(function() { sb.classList.remove('show'); }, 3000);
 }
 </script>
 </body>
