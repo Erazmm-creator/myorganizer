@@ -1,6 +1,6 @@
 {
-  "name": "MyGarage",
-  "short_name": "MyGarage",
+  "name": "MyOrganizer",
+  "short_name": "MyOrganizer",
   "description": "Гаранции и автомобилни документи",
   "start_url": "/myorganizer/",
   "scope": "/myorganizer/",
