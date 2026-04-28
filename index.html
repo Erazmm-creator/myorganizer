@@ -416,6 +416,8 @@
         <option>ГТП</option>
         <option>Винетка</option>
         <option>Карта СБА</option>
+        <option>Пожарогасител</option>
+        <option>Аптечка</option>
         <option>Друг документ</option>
       </select>
     </div>
@@ -723,6 +725,7 @@ function renderWarranties() {
         imgHtml +
       '</div>' +
       '<div class="card-actions">' +
+        '<button class="action-btn" onclick="addToCalendar('' + w.title + ' — гаранция', w.expiry, w.title)" title="Добави в календара">📅</button>' +
         '<button class="action-btn" onclick="editWarranty(\'' + w.id + '\')">✏️</button>' +
         '<button class="action-btn danger" onclick="askDelete(\'Изтриване на гаранцията?\', function(){ deleteWarranty(\'' + w.id + '\') })">🗑️</button>' +
       '</div>' +
@@ -839,6 +842,7 @@ function renderVehicleDetail(vehicleId) {
         imgHtml +
       '</div>' +
       '<div class="card-actions">' +
+        '<button class="action-btn" onclick="addToCalendar('' + d.type + '', d.validTo, d.notes)" title="Добави в календара">📅</button>' +
         '<button class="action-btn" onclick="editDocument(\'' + vehicleId + '\',\'' + d.id + '\')">✏️</button>' +
         '<button class="action-btn danger" onclick="askDelete(\'Изтриване на документа?\', function(){ deleteDocument(\'' + vehicleId + '\',\'' + d.id + '\') })">🗑️</button>' +
       '</div>' +
@@ -1177,3 +1181,25 @@ function showSnackbar(msg) {
 </script>
 </body>
 </html>
+<script>
+function addToCalendar(title, dateStr, notes) {
+  if (!dateStr) { showSnackbar('Няма дата за добавяне!'); return; }
+  var date = new Date(dateStr);
+  var y = date.getFullYear();
+  var m = String(date.getMonth()+1).padStart(2,'0');
+  var d = String(date.getDate()).padStart(2,'0');
+  var dateFormatted = y + m + d;
+  var nextDay = new Date(date);
+  nextDay.setDate(nextDay.getDate()+1);
+  var ny = nextDay.getFullYear();
+  var nm = String(nextDay.getMonth()+1).padStart(2,'0');
+  var nd = String(nextDay.getDate()).padStart(2,'0');
+  var nextFormatted = ny + nm + nd;
+  var desc = (notes || '') + ' — MyOrganizer';
+  var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + encodeURIComponent(title) +
+    '&dates=' + dateFormatted + '%2F' + nextFormatted +
+    '&details=' + encodeURIComponent(desc);
+  window.open(url, '_blank');
+}
+</script>
