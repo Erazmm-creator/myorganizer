@@ -293,9 +293,20 @@ function handleImageSelect(inputId,previewId,dataId){
   var file=document.getElementById(inputId).files[0];if(!file)return;
   var reader=new FileReader();
   reader.onload=function(e){
-    var data=e.target.result;
-    document.getElementById(dataId).value=data;
-    document.getElementById(previewId).innerHTML='<img src="'+data+'" style="max-width:100%;max-height:160px;border-radius:8px;object-fit:contain"><button class="img-clear-btn" onclick="clearImg(event,\''+inputId+'\',\''+previewId+'\',\''+dataId+'\')">✕ Премахни</button>';
+    var img=new Image();
+    img.onload=function(){
+      var canvas=document.createElement('canvas');
+      var maxSize=600;
+      var w=img.width,h=img.height;
+      if(w>h){if(w>maxSize){h=Math.round(h*maxSize/w);w=maxSize}}else{if(h>maxSize){w=Math.round(w*maxSize/h);h=maxSize}}
+      canvas.width=w;canvas.height=h;
+      var ctx=canvas.getContext('2d');
+      ctx.drawImage(img,0,0,w,h);
+      var data=canvas.toDataURL('image/jpeg',0.7);
+      document.getElementById(dataId).value=data;
+      document.getElementById(previewId).innerHTML='<img src="'+data+'" style="max-width:100%;max-height:160px;border-radius:8px;object-fit:contain"><button class="img-clear-btn" onclick="clearImg(event,\''+inputId+'\',\''+previewId+'\',\''+dataId+'\')">✕ Премахни</button>';
+    };
+    img.src=e.target.result;
   };
   reader.readAsDataURL(file);
 }
