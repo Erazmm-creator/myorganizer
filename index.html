@@ -50,15 +50,18 @@
   .action-btn{background:none;border:none;color:var(--muted);width:40px;height:40px;border-radius:8px;cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:all .2s}
   .action-btn:active{transform:scale(.9);background:var(--card2)}
   .action-btn.danger{color:var(--red)}.action-btn.cal{color:var(--accent)}
+  /* thumbnail image */
+  .img-thumb{width:48px;height:48px;border-radius:8px;object-fit:cover;cursor:pointer;border:1px solid var(--border);margin-top:8px}
   .doc-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
   .doc-row:last-child{border-bottom:none}
   .doc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
   .doc-name{flex:1;font-size:13px}.doc-days{font-size:13px;font-weight:600}
   .fab{position:fixed;bottom:24px;right:20px;background:var(--accent);color:#000;border:none;border-radius:20px;padding:14px 20px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,212,160,.4);transition:all .2s;z-index:50}
   .fab:active{transform:scale(.95)}
+  /* MODAL - fixed save button visibility */
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:flex-end;justify-content:center}
   .modal-overlay.open{display:flex}
-  .modal{background:var(--card);border-radius:24px 24px 0 0;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;padding:24px 20px;border-top:1px solid var(--border);animation:slideUp .3s ease}
+  .modal{background:var(--card);border-radius:24px 24px 0 0;width:100%;max-width:480px;max-height:85vh;overflow-y:auto;padding:24px 20px 40px;border-top:1px solid var(--border);animation:slideUp .3s ease}
   @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
   .modal-handle{width:40px;height:4px;background:var(--border);border-radius:4px;margin:0 auto 20px}
   .modal-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:20px}
@@ -67,11 +70,12 @@
   .form-group input,.form-group select{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:12px;color:var(--text);padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:15px;outline:none;transition:border-color .2s;appearance:none;-webkit-appearance:none}
   .form-group input:focus,.form-group select:focus{border-color:var(--accent)}
   .form-group select option{background:var(--card)}
-  .image-upload-area{border:2px dashed var(--border);border-radius:12px;padding:20px;text-align:center;cursor:pointer;background:var(--card2);min-height:100px;display:flex;align-items:center;justify-content:center;flex-direction:column}
-  .image-upload-area img{max-width:100%;max-height:200px;border-radius:8px;object-fit:contain}
+  .image-upload-area{border:2px dashed var(--border);border-radius:12px;padding:20px;text-align:center;cursor:pointer;background:var(--card2);min-height:90px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+  .image-upload-area img{max-width:100%;max-height:160px;border-radius:8px;object-fit:contain}
   .img-clear-btn{margin-top:10px;background:none;border:1px solid var(--red);color:var(--red);border-radius:8px;padding:6px 14px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif}
-  .btn-primary{width:100%;background:var(--accent);color:#000;border:none;border-radius:12px;padding:15px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer;margin-top:8px}
-  .btn-cancel{width:100%;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:12px;padding:14px;font-family:'DM Sans',sans-serif;font-size:15px;cursor:pointer;margin-top:8px}
+  /* Save button - larger touch target */
+  .btn-primary{width:100%;background:var(--accent);color:#000;border:none;border-radius:12px;padding:16px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer;margin-top:12px;min-height:52px;display:block;-webkit-appearance:none}
+  .btn-cancel{width:100%;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:12px;padding:14px;font-family:'DM Sans',sans-serif;font-size:15px;cursor:pointer;margin-top:8px;min-height:48px;display:block;-webkit-appearance:none}
   .empty{text-align:center;padding:60px 20px;color:var(--muted)}
   .empty .empty-icon{font-size:56px;margin-bottom:16px}
   .empty h3{font-family:'Syne',sans-serif;color:var(--text);margin-bottom:8px}
@@ -87,7 +91,6 @@
   .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
   .section-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700}
   .add-doc-btn{background:var(--accent);color:#000;border:none;border-radius:10px;padding:8px 14px;font-family:'Syne',sans-serif;font-size:13px;font-weight:700;cursor:pointer}
-  .receipt-thumb{width:100%;max-height:160px;object-fit:contain;border-radius:8px;margin-top:10px;cursor:pointer}
   .notif-info{background:rgba(0,212,160,.08);border:1px solid rgba(0,212,160,.2);border-radius:12px;padding:12px 16px;font-size:13px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px}
 </style>
 </head>
@@ -230,7 +233,7 @@
 <div class="modal-overlay" id="image-viewer-modal">
   <div class="modal" style="background:#000;padding:10px">
     <div style="text-align:right;margin-bottom:8px">
-      <button onclick="closeModal('image-viewer-modal')" style="background:none;border:none;color:#fff;font-size:24px;cursor:pointer">✕</button>
+      <button onclick="closeModal('image-viewer-modal')" style="background:none;border:none;color:#fff;font-size:28px;cursor:pointer;min-height:44px;min-width:44px">✕</button>
     </div>
     <img id="image-viewer-img" src="" style="width:100%;border-radius:8px">
   </div>
@@ -277,14 +280,14 @@ function setFilter(screen,filter,el){
 }
 
 function dr(d){if(!d)return 9999;return Math.floor((new Date(d)-new Date())/86400000)}
-function fd(d){if(!d)return '—';return new Date(d).toLocaleDateString('bg-BG',{day:'2-digit',month:'short',year:'numeric'})}
-function gs2(days){var a=gs().alertDays;if(days<0)return 'expired';if(days<=a)return 'expiring';return 'active'}
-function sb(s){if(s==='expired')return '<span class="status-badge badge-red">Изтекъл</span>';if(s==='expiring')return '<span class="status-badge badge-orange">Изтича</span>';return '<span class="status-badge badge-green">Активен</span>'}
-function scl(s){if(s==='expired')return 'red';if(s==='expiring')return 'orange';return 'green'}
-function pc(s){if(s==='expired')return 'var(--red)';if(s==='expiring')return 'var(--orange)';return 'var(--accent)'}
+function fd(d){if(!d)return'—';return new Date(d).toLocaleDateString('bg-BG',{day:'2-digit',month:'short',year:'numeric'})}
+function getStatus(days){var a=gs().alertDays;if(days<0)return'expired';if(days<=a)return'expiring';return'active'}
+function sb(s){if(s==='expired')return'<span class="status-badge badge-red">Изтекъл</span>';if(s==='expiring')return'<span class="status-badge badge-orange">Изтича</span>';return'<span class="status-badge badge-green">Активен</span>'}
+function scl(s){if(s==='expired')return'red';if(s==='expiring')return'orange';return'green'}
+function pc(s){if(s==='expired')return'var(--red)';if(s==='expiring')return'var(--orange)';return'var(--accent)'}
 function cp(p,e){if(!p||!e)return 0;return Math.min(100,Math.max(0,Math.round((Date.now()-new Date(p))/(new Date(e)-new Date(p))*100)))}
 function gid(){return Date.now().toString(36)+Math.random().toString(36).substr(2)}
-function esc(s){if(!s)return '';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
 function handleImageSelect(inputId,previewId,dataId){
   var file=document.getElementById(inputId).files[0];if(!file)return;
@@ -292,18 +295,17 @@ function handleImageSelect(inputId,previewId,dataId){
   reader.onload=function(e){
     var data=e.target.result;
     document.getElementById(dataId).value=data;
-    document.getElementById(previewId).innerHTML='<img src="'+data+'" style="max-width:100%;max-height:200px;border-radius:8px;object-fit:contain"><button class="img-clear-btn" onclick="clearImg(event,\''+inputId+'\',\''+previewId+'\',\''+dataId+'\')">✕ Премахни</button>';
+    document.getElementById(previewId).innerHTML='<img src="'+data+'" style="max-width:100%;max-height:160px;border-radius:8px;object-fit:contain"><button class="img-clear-btn" onclick="clearImg(event,\''+inputId+'\',\''+previewId+'\',\''+dataId+'\')">✕ Премахни</button>';
   };
   reader.readAsDataURL(file);
 }
 function clearImg(e,inputId,previewId,dataId){
   e.stopPropagation();
-  document.getElementById(inputId).value='';document.getElementById(dataId).value='';
-  resetPrev(previewId);
+  document.getElementById(inputId).value='';document.getElementById(dataId).value='';resetPrev(previewId);
 }
 function resetPrev(id){document.getElementById(id).innerHTML='<span style="font-size:32px">📷</span><div style="color:var(--muted);font-size:13px;margin-top:8px">Снимай или избери от галерията</div>'}
 function setPrev(pid,did,img){
-  if(img){document.getElementById(did).value=img;document.getElementById(pid).innerHTML='<img src="'+img+'" style="max-width:100%;max-height:200px;border-radius:8px;object-fit:contain">'}
+  if(img){document.getElementById(did).value=img;document.getElementById(pid).innerHTML='<img src="'+img+'" style="max-width:100%;max-height:160px;border-radius:8px;object-fit:contain">'}
   else{document.getElementById(did).value='';resetPrev(pid)}
 }
 function viewImage(src){document.getElementById('image-viewer-img').src=src;document.getElementById('image-viewer-modal').classList.add('open')}
@@ -316,21 +318,28 @@ function addToCalendar(title,dateStr,notes){
   window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+fmt(d)+'%2F'+fmt(n)+'&details='+encodeURIComponent((notes||'')+' — MyOrganizer'),'_blank');
 }
 
+// thumbnail html for cards
+function thumbHtml(img){
+  if(!img)return'';
+  return'<img src="'+img+'" class="img-thumb" onclick="viewImage(\''+img+'\')" title="Виж снимката">';
+}
+
 function renderWarranties(){
   var list=gd('mg_warranties');
-  if(wf==='expiring')list=list.filter(function(w){var s=gs2(dr(w.expiry));return s==='expiring'||s==='expired'});
-  else if(wf==='active')list=list.filter(function(w){return gs2(dr(w.expiry))==='active'});
+  if(wf==='expiring')list=list.filter(function(w){var s=getStatus(dr(w.expiry));return s==='expiring'||s==='expired'});
+  else if(wf==='active')list=list.filter(function(w){return getStatus(dr(w.expiry))==='active'});
   var el=document.getElementById('warranties-list');
   if(!list.length){el.innerHTML='<div class="empty"><div class="empty-icon">🧾</div><h3>Няма гаранции</h3><p>Натисни + за да добавиш</p></div>';return}
   el.innerHTML=list.map(function(w){
-    var days=dr(w.expiry),status=gs2(days),color=scl(status),progress=cp(w.purchase,w.expiry);
+    var days=dr(w.expiry),status=getStatus(days),color=scl(status),progress=cp(w.purchase,w.expiry);
     var dText=days<0?'Изтекла':days+' дни';
     var cardCls=status==='expired'?'expired':status==='expiring'?'expiring':'';
-    var imgHtml=w.image?'<img src="'+w.image+'" class="receipt-thumb" onclick="viewImage(\''+w.image+'\')">':'';
-    return '<div class="card '+cardCls+'">'+
+    return'<div class="card '+cardCls+'">'+
       '<div class="card-body">'+
         '<div class="card-header"><div class="card-icon '+color+'">🧾</div>'+
-        '<div><div class="card-title">'+esc(w.title)+'</div><div class="card-sub">'+esc(w.category)+(w.model?' • '+esc(w.model):'')+' </div></div>'+sb(status)+'</div>'+
+        '<div style="flex:1"><div class="card-title">'+esc(w.title)+'</div><div class="card-sub">'+esc(w.category)+(w.model?' • '+esc(w.model):'')+' </div></div>'+
+        (w.image?thumbHtml(w.image):'')+
+        sb(status)+'</div>'+
         '<div class="card-info">'+
           '<div class="info-col"><label>ДАТА НА ПОКУПКА</label><span>'+fd(w.purchase)+'</span></div>'+
           '<div class="info-col"><label>ИЗТИЧА НА</label><span class="'+(status!=='active'?color:'')+'">'+fd(w.expiry)+'</span></div>'+
@@ -340,7 +349,6 @@ function renderWarranties(){
         '<div class="progress-label">'+progress+'% до изтичане</div>'+
         (status==='expiring'?'<div class="alert-row">⚠️ Изтича след '+days+' дни!</div>':'')+
         (status==='expired'?'<div class="alert-row" style="color:var(--red)">🔴 Гаранцията е изтекла!</div>':'')+
-        imgHtml+
       '</div>'+
       '<div class="card-actions">'+
         '<button class="action-btn cal" onclick="addToCalendar(\''+esc(w.title)+' — гаранция\',\''+w.expiry+'\',\''+esc(w.title)+'\')" title="Добави в Google Calendar">📅</button>'+
@@ -351,11 +359,11 @@ function renderWarranties(){
 }
 
 function gvs(v){
-  if(!v.documents||!v.documents.length)return 'active';
-  var st=v.documents.map(function(d){return gs2(dr(d.validTo))});
-  if(st.indexOf('expired')!==-1)return 'expired';
-  if(st.indexOf('expiring')!==-1)return 'expiring';
-  return 'active';
+  if(!v.documents||!v.documents.length)return'active';
+  var st=v.documents.map(function(d){return getStatus(dr(d.validTo))});
+  if(st.indexOf('expired')!==-1)return'expired';
+  if(st.indexOf('expiring')!==-1)return'expiring';
+  return'active';
 }
 
 function renderVehicles(){
@@ -367,13 +375,20 @@ function renderVehicles(){
   el.innerHTML=list.map(function(v){
     var status=gvs(v),color=scl(status),cardCls=status==='expired'?'expired':status==='expiring'?'expiring':'';
     var docs=v.documents||[];
+    // Per-document status rows
     var docsHtml=docs.length?'<div style="border-top:1px solid var(--border);padding-top:12px;margin-top:4px">'+docs.map(function(d){
-      var days=dr(d.validTo),ds=gs2(days),dc=scl(ds);
+      var days=dr(d.validTo),ds=getStatus(days),dc=scl(ds);
       var dotC=dc==='green'?'var(--accent)':dc==='orange'?'var(--orange)':'var(--red)';
       var dText=!d.validTo?'—':days<0?'Изтекъл':days+' дни';
-      return '<div class="doc-row"><div class="doc-dot" style="background:'+dotC+'"></div><div class="doc-name">'+esc(d.type)+'</div><div class="doc-days" style="color:'+dotC+'">'+dText+'</div></div>';
+      return'<div class="doc-row">'+
+        '<div class="doc-dot" style="background:'+dotC+'"></div>'+
+        '<div class="doc-name">'+esc(d.type)+'</div>'+
+        '<div class="doc-days" style="color:'+dotC+'">'+dText+'</div>'+
+        // individual status badge per doc
+        sb(ds)+
+      '</div>';
     }).join('')+'</div>':'<div style="color:var(--muted);font-size:13px;margin-top:8px;text-align:center">Натисни за да добавиш документи</div>';
-    return '<div class="card '+cardCls+'" onclick="openVehicleDetail(\''+v.id+'\')" style="cursor:pointer">'+
+    return'<div class="card '+cardCls+'" onclick="openVehicleDetail(\''+v.id+'\')" style="cursor:pointer">'+
       '<div class="card-body"><div class="card-header"><div class="card-icon '+color+'">🚗</div>'+
       '<div><div class="card-title">'+esc(v.name)+'</div><div class="card-sub">'+esc(v.plate)+(v.brand?' • '+esc(v.brand):'')+(v.year?' '+v.year:'')+'</div></div>'+sb(status)+'</div>'+docsHtml+'</div>'+
       '<div class="card-actions" onclick="event.stopPropagation()">'+
@@ -389,13 +404,14 @@ function renderVehicleDetail(vehicleId){
   if(!v)return;
   var docs=v.documents||[],status=gvs(v),color=scl(status);
   var docsHtml=docs.length?docs.map(function(d){
-    var days=dr(d.validTo),ds=gs2(days),dc=scl(ds);
+    var days=dr(d.validTo),ds=getStatus(days),dc=scl(ds);
     var dText=!d.validTo?'—':days<0?'Изтекъл':days+' дни';
     var cardCls=ds==='expired'?'expired':ds==='expiring'?'expiring':'';
-    var imgHtml=d.image?'<img src="'+d.image+'" class="receipt-thumb" onclick="viewImage(\''+d.image+'\')">':'';
-    return '<div class="card '+cardCls+'">'+
+    return'<div class="card '+cardCls+'">'+
       '<div class="card-body"><div class="card-header"><div class="card-icon '+dc+'">📄</div>'+
-      '<div><div class="card-title">'+esc(d.type)+'</div>'+(d.notes?'<div class="card-sub">'+esc(d.notes)+'</div>':'')+' </div>'+sb(ds)+'</div>'+
+      '<div><div class="card-title">'+esc(d.type)+'</div>'+(d.notes?'<div class="card-sub">'+esc(d.notes)+'</div>':'')+' </div>'+
+      (d.image?thumbHtml(d.image):'')+
+      sb(ds)+'</div>'+
       '<div class="card-info">'+
         '<div class="info-col"><label>ВАЛИДНО ОТ</label><span>'+fd(d.validFrom)+'</span></div>'+
         '<div class="info-col"><label>ВАЛИДНО ДО</label><span class="'+(ds!=='active'?dc:'')+'">'+fd(d.validTo)+'</span></div>'+
@@ -404,12 +420,12 @@ function renderVehicleDetail(vehicleId){
       (d.validFrom&&d.validTo?'<div class="progress-bar"><div class="progress-fill" style="width:'+cp(d.validFrom,d.validTo)+'%;background:'+pc(ds)+'"></div></div>':'')+
       (ds==='expiring'?'<div class="alert-row">⚠️ Изтича след '+days+' дни!</div>':'')+
       (ds==='expired'?'<div class="alert-row" style="color:var(--red)">🔴 Документът е изтекъл!</div>':'')+
-      imgHtml+'</div>'+
-      '<div class="card-actions">'+
-        '<button class="action-btn cal" onclick="addToCalendar(\''+esc(d.type)+'\',\''+(d.validTo||'')+'\',\''+esc(d.notes||'')+'\')" title="Добави в Google Calendar">📅</button>'+
-        '<button class="action-btn" onclick="editDocument(\''+vehicleId+'\',\''+d.id+'\')">✏️</button>'+
-        '<button class="action-btn danger" onclick="askDelete(\'Изтриване на документа?\',function(){deleteDocument(\''+vehicleId+'\',\''+d.id+'\')})">🗑️</button>'+
-      '</div></div>';
+    '</div>'+
+    '<div class="card-actions">'+
+      '<button class="action-btn cal" onclick="addToCalendar(\''+esc(d.type)+'\',\''+(d.validTo||'')+'\',\''+esc(d.notes||'')+'\')" title="Добави в Google Calendar">📅</button>'+
+      '<button class="action-btn" onclick="editDocument(\''+vehicleId+'\',\''+d.id+'\')">✏️</button>'+
+      '<button class="action-btn danger" onclick="askDelete(\'Изтриване на документа?\',function(){deleteDocument(\''+vehicleId+'\',\''+d.id+'\')})">🗑️</button>'+
+    '</div></div>';
   }).join(''):'<div class="empty"><div class="empty-icon">📂</div><h3>Няма документи</h3><p>Натисни "Добави" за да добавиш</p></div>';
 
   document.getElementById('vehicle-detail-content').innerHTML=
