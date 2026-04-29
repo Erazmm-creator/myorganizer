@@ -296,7 +296,7 @@ function handleImageSelect(inputId,previewId,dataId){
     var img=new Image();
     img.onload=function(){
       var canvas=document.createElement('canvas');
-      var maxSize=600;
+      var maxSize=1200;
       var w=img.width,h=img.height;
       if(w>h){if(w>maxSize){h=Math.round(h*maxSize/w);w=maxSize}}else{if(h>maxSize){w=Math.round(w*maxSize/h);h=maxSize}}
       canvas.width=w;canvas.height=h;
